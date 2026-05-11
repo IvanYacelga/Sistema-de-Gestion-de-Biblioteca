@@ -6,10 +6,14 @@ package Vista;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ivana
- */
+import Vista.FrmRecuperacion; 
+
+
+import Controlador.LoginControlador;
+import Controlador.UsuarioControlador;
+import Modelo.Login;
+import Modelo.Usuario;
+import javax.swing.JOptionPane;
 public class FrmLogin extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
@@ -36,6 +40,8 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
+        btnRecuperar = new javax.swing.JButton();
+        btnIngresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 350));
@@ -50,6 +56,12 @@ public class FrmLogin extends javax.swing.JFrame {
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(this::btnIngresarActionPerformed);
 
+        btnRecuperar.setText("¿Olvido su Contraseña?");
+        btnRecuperar.addActionListener(this::btnRecuperarActionPerformed);
+
+        btnIngresar1.setText("Registrarse");
+        btnIngresar1.addActionListener(this::btnIngresar1ActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,9 +71,8 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)))
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(216, 216, 216)
                         .addComponent(lblClave)
@@ -69,8 +80,16 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblUsuario)
-                .addGap(229, 229, 229))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblUsuario)
+                        .addGap(229, 229, 229))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(143, 143, 143))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,9 +102,13 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(lblClave)
                 .addGap(12, 12, 12)
                 .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addComponent(btnIngresar)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresar1)
+                .addGap(18, 18, 18)
+                .addComponent(btnRecuperar)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,31 +116,114 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-        String usuario = txtUsuario.getText().trim();
-        String clave = String.valueOf(txtClave.getPassword()).trim();
+      String usuario = txtUsuario.getText().trim();
+    String clave = String.valueOf(txtClave.getPassword()).trim();
 
-        if (usuario.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Ingrese usuario", "Aviso", JOptionPane.WARNING_MESSAGE);
-            txtUsuario.requestFocus();
-            return;
-        }
+    // Validar que no estén vacíos
+    if (usuario.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Debe ingresar el usuario",
+                "Aviso",
+                javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+        txtUsuario.requestFocus();
+        return;
+    }
+    if (clave.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Debe ingresar la contrasena",
+                "Aviso",
+                javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+        txtClave.requestFocus();
+        return;
+    }
 
-        if (clave.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Debe ingresar la contraseña");
-            txtClave.requestFocus();
-            return;
-        }
+    // Validar que solo tenga letras
+    if (!usuario.matches("[a-zA-Z]+")) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "El usuario solo puede contener letras",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        txtUsuario.setText("");
+        txtUsuario.requestFocus();
+        return;
+    }
+
+    // Validar caracteres permitidos en contrasena
+    if (!clave.matches("[a-zA-Z0-9]+")) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "La contrasena contiene caracteres no permitidos",
+                "Error",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        txtClave.setText("");
+        txtClave.requestFocus();
+        return;
+    }
+
+    // ✅ Crear objeto Modelo y llamar al Controlador
+    Modelo.Login loginModelo = new Modelo.Login(usuario, clave);
+    Controlador.LoginControlador controlador = new Controlador.LoginControlador();
+    boolean acceso = controlador.validarCredenciales(loginModelo);
+
+    if (acceso) {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Bienvenido Administrador"
+        );
 
         FrmMenu ventana = new FrmMenu();
         ventana.setVisible(true);
+        this.dispose();
 
+        // ✅ Iniciar temporizador de 10 minutos (SGDB-12)
+        controlador.iniciarTemporizador(10, () -> {
+            javax.swing.JOptionPane.showMessageDialog(
+                    null,
+                    "Sesión cerrada por inactividad.",
+                    "Sesión expirada",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
+            );
+            ventana.dispose();
+            new FrmLogin().setVisible(true);
+        });
+
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Usuario o contrasena incorrectos",
+                "Acceso denegado",
+                javax.swing.JOptionPane.ERROR_MESSAGE
+        );
+        txtUsuario.setText("");
+        txtClave.setText("");
+        txtUsuario.requestFocus();
+    }
+       
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarActionPerformed
+        // TODO add your handling code here:
+    FrmRecuperacion recuperacion = new FrmRecuperacion();
+    recuperacion.setVisible(true);
+
+    // Ocultar login para volver después
+    this.setVisible(false);
+    }//GEN-LAST:event_btnRecuperarActionPerformed
+
+    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +252,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnIngresar1;
+    private javax.swing.JButton btnRecuperar;
     private javax.swing.JLabel lblClave;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtClave;
