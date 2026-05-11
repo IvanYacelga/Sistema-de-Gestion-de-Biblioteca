@@ -10,7 +10,8 @@ public class UsuarioControlador {
 
     // Ruta del archivo JSON
 // ✅ Ruta absoluta — siempre encuentra la carpeta correcta
-private static final String RUTA_JSON =  System.getProperty("user.dir") + "/datos/usuarios.json";
+    private static final String RUTA_JSON = System.getProperty("user.dir") + "/datos/usuarios.json";
+
     // ─────────────────────────────────────────
     // REGISTRAR usuario nuevo
     // ─────────────────────────────────────────
@@ -58,7 +59,9 @@ private static final String RUTA_JSON =  System.getProperty("user.dir") + "/dato
         List<Usuario> lista = new ArrayList<>();
 
         File archivo = new File(RUTA_JSON);
-        if (!archivo.exists()) return lista;
+        if (!archivo.exists()) {
+            return lista;
+        }
 
         try {
             String contenido = new String(Files.readAllBytes(Paths.get(RUTA_JSON)));
@@ -69,7 +72,9 @@ private static final String RUTA_JSON =  System.getProperty("user.dir") + "/dato
                 contenido = contenido.substring(1, contenido.length() - 1).trim();
             }
 
-            if (contenido.isEmpty()) return lista;
+            if (contenido.isEmpty()) {
+                return lista;
+            }
 
             // Separar objetos JSON manualmente
             String[] objetos = contenido.split("\\},\\s*\\{");
@@ -77,7 +82,9 @@ private static final String RUTA_JSON =  System.getProperty("user.dir") + "/dato
             for (String obj : objetos) {
                 obj = obj.replace("{", "").replace("}", "").trim();
                 Usuario u = parsearUsuario(obj);
-                if (u != null) lista.add(u);
+                if (u != null) {
+                    lista.add(u);
+                }
             }
 
         } catch (IOException e) {
@@ -93,8 +100,10 @@ private static final String RUTA_JSON =  System.getProperty("user.dir") + "/dato
     private void guardarUsuarios(List<Usuario> lista) {
         try {
             // Crear carpeta si no existe
-File carpeta = new File(System.getProperty("user.dir") + "/datos");
-            if (!carpeta.exists()) carpeta.mkdirs();
+            File carpeta = new File(System.getProperty("user.dir") + "/datos");
+            if (!carpeta.exists()) {
+                carpeta.mkdirs();
+            }
 
             StringBuilder sb = new StringBuilder();
             sb.append("[\n");
@@ -108,7 +117,9 @@ File carpeta = new File(System.getProperty("user.dir") + "/datos");
                 sb.append("    \"cedula\": \"").append(u.getCedula()).append("\",\n");
                 sb.append("    \"correo\": \"").append(u.getCorreo()).append("\"\n");
                 sb.append("  }");
-                if (i < lista.size() - 1) sb.append(",");
+                if (i < lista.size() - 1) {
+                    sb.append(",");
+                }
                 sb.append("\n");
             }
 
@@ -125,29 +136,59 @@ File carpeta = new File(System.getProperty("user.dir") + "/datos");
     // PARSEAR un objeto JSON a Usuario
     // ─────────────────────────────────────────
     private Usuario parsearUsuario(String obj) {
+
         try {
+
             Usuario u = new Usuario();
-            String[] campos = obj.split(",\n");
+
+            String[] campos = obj.split(",");
 
             for (String campo : campos) {
-                String[] partes = campo.split("\":\\s*\"");
-                if (partes.length < 2) continue;
 
-                String clave = partes[0].replace("\"", "").trim();
-                String valor = partes[1].replace("\"", "").trim();
+                String[] partes = campo.split(":");
+
+                if (partes.length < 2) {
+                    continue;
+                }
+
+                String clave = partes[0]
+                        .replace("\"", "")
+                        .trim();
+
+                String valor = partes[1]
+                        .replace("\"", "")
+                        .trim();
 
                 switch (clave) {
-                    case "nombre":    u.setNombre(valor);     break;
-                    case "usuario":   u.setUsuario(valor);    break;
-                    case "contrasena": u.setContrasena(valor); break;
-                    case "cedula":    u.setCedula(valor);     break;
-                    case "correo":    u.setCorreo(valor);     break;
+
+                    case "nombre":
+                        u.setNombre(valor);
+                        break;
+
+                    case "usuario":
+                        u.setUsuario(valor);
+                        break;
+
+                    case "contrasena":
+                        u.setContrasena(valor);
+                        break;
+
+                    case "cedula":
+                        u.setCedula(valor);
+                        break;
+
+                    case "correo":
+                        u.setCorreo(valor);
+                        break;
                 }
             }
+
             return u;
 
         } catch (Exception e) {
-            System.out.println("Error al parsear usuario: " + e.getMessage());
+
+            System.out.println("Error parseando usuario: " + e.getMessage());
+
             return null;
         }
     }
@@ -156,23 +197,29 @@ File carpeta = new File(System.getProperty("user.dir") + "/datos");
     // VALIDAR credenciales (para LoginControlador)
     // ─────────────────────────────────────────
     public boolean validarCredenciales(String usuario, String contrasena) {
+
         List<Usuario> lista = cargarUsuarios();
+
         for (Usuario u : lista) {
-            if (u.getUsuario().equals(usuario) && 
-                u.getContrasena().equals(contrasena)) {
+
+            if (usuario.equals(u.getUsuario())
+                    && contrasena.equals(u.getContrasena())) {
+
                 return true;
             }
         }
+
         return false;
     }
+
     public Usuario buscarPorCedulaYCorreo(String cedula, String correo) {
-    List<Usuario> lista = cargarUsuarios();
-    for (Usuario u : lista) {
-        if (u.getCedula().equals(cedula) && 
-            u.getCorreo().equalsIgnoreCase(correo)) {
-            return u;
+        List<Usuario> lista = cargarUsuarios();
+        for (Usuario u : lista) {
+            if (u.getCedula().equals(cedula)
+                    && u.getCorreo().equalsIgnoreCase(correo)) {
+                return u;
+            }
         }
+        return null; // No encontrado
     }
-    return null; // No encontrado
-}
 }
