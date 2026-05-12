@@ -20,6 +20,17 @@ public class FrmRegistrarse extends javax.swing.JFrame {
     public FrmRegistrarse() {
         initComponents();
         setLocationRelativeTo(null);
+         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+    
+    addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            new FrmLogin().setVisible(true);
+            dispose();
+        }
+    });
+
+
     }
 
     /**
@@ -192,6 +203,8 @@ public class FrmRegistrarse extends javax.swing.JFrame {
             cpCedula.setText("");
             cpCorreo.setText("");
             cpNombre1.requestFocus();
+             new Vista.FrmMenu().setVisible(true);
+    this.dispose();
 
         } else {
             // Mostrar error del controlador

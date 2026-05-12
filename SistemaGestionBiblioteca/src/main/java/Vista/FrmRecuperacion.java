@@ -24,6 +24,15 @@ public class FrmRecuperacion extends javax.swing.JFrame {
     public FrmRecuperacion() {
         initComponents();
         setLocationRelativeTo(null);
+          setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+    
+    addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosing(java.awt.event.WindowEvent e) {
+            new FrmLogin().setVisible(true);
+            dispose();
+        }
+    });
     }
 
     /**
@@ -179,6 +188,7 @@ props.put("mail.smtp.localhost", "biblioteca.sistema");
         // Volver al login
         new FrmLogin().setVisible(true);
         this.dispose();
+        
 
     } catch (Exception e) {
         // Mostrar error completo para diagnosticar
