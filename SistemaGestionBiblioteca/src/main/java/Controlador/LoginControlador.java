@@ -9,8 +9,7 @@ public class LoginControlador {
 
     public boolean validarCredenciales(Login login) {
 
-        UsuarioControlador usuarioControlador
-                = new UsuarioControlador();
+        UsuarioControlador usuarioControlador= new UsuarioControlador();
 
         return usuarioControlador.validarCredenciales(
                 login.getUsuario(),
