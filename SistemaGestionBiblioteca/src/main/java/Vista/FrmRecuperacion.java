@@ -44,161 +44,94 @@ public class FrmRecuperacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRecuperar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         campoCedula = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         campoCorreo = new javax.swing.JTextField();
+        lblUsuario = new javax.swing.JLabel();
+        lblUsuario1 = new javax.swing.JLabel();
+        btnRecuperar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnRecuperar.setText("Recuperar");
-        btnRecuperar.addActionListener(this::btnRecuperarActionPerformed);
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         campoCedula.addActionListener(this::campoCedulaActionPerformed);
 
-        jLabel1.setText("Ingrese su cedula:");
-
-        jLabel2.setText("Ingrese su correo asociado:");
-
         campoCorreo.addActionListener(this::campoCorreoActionPerformed);
+
+        lblUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblUsuario.setText("Ingrese su cedula:");
+
+        lblUsuario1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblUsuario1.setForeground(new java.awt.Color(51, 51, 51));
+        lblUsuario1.setText("Ingrese su correo");
+
+        btnRecuperar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnRecuperar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecuperar.setText("Recuperar");
+        btnRecuperar.addActionListener(this::btnRecuperarActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Recuperar Contraseña");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(49, 49, 49)
+                                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(59, 59, 59)
+                                    .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(btnRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario1))
+                .addGap(53, 53, 53)
+                .addComponent(btnRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnRecuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRecuperar)
-                .addContainerGap(96, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarActionPerformed
-          String cedula = campoCedula.getText().trim();
-    String correo = campoCorreo.getText().trim();
-
-    if (cedula.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese la cedula");
-        campoCedula.requestFocus();
-        return;
-    }
-    if (correo.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Ingrese el correo");
-        campoCorreo.requestFocus();
-        return;
-    }
-    if (!cedula.matches("[0-9]+")) {
-        JOptionPane.showMessageDialog(this, "La cedula solo debe contener numeros");
-        campoCedula.setText("");
-        campoCedula.requestFocus();
-        return;
-    }
-    if (!correo.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-        JOptionPane.showMessageDialog(this, "Correo invalido");
-        campoCorreo.setText("");
-        campoCorreo.requestFocus();
-        return;
-    }
-
-    // ✅ Busca en el JSON — NO hay datos quemados
-    UsuarioControlador controlador = new UsuarioControlador();
-    Usuario encontrado = controlador.buscarPorCedulaYCorreo(cedula, correo);
-
-    if (encontrado != null) {
-        // Envía la contraseña real del usuario registrado
-        enviarCorreo(encontrado.getCorreo(), encontrado.getNombre(), 
-                     encontrado.getContrasena());
-    } else {
-        JOptionPane.showMessageDialog(this,
-                "No se encontro ningun usuario con esa cedula y correo.",
-                "Usuario no encontrado",
-                JOptionPane.ERROR_MESSAGE);
-        campoCedula.setText("");
-        campoCorreo.setText("");
-        campoCedula.requestFocus();
-    }
-    }                      
-
- private void enviarCorreo(String destino, String nombre, String contrasena) {
-final String remitente = "ivanyacelga001@gmail.com";
-final String claveApp  = "zkfzwsfxfxwoiocf";
-
-Properties props = new Properties();
-props.put("mail.smtp.host", "smtp.gmail.com");
-props.put("mail.smtp.port", "587");
-props.put("mail.smtp.auth", "true");
-props.put("mail.smtp.starttls.enable", "true");
-props.put("mail.smtp.starttls.required", "true");
-props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-props.put("mail.debug", "true");
-props.put("mail.smtp.localhost", "biblioteca.sistema");
-
-    Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(remitente, claveApp);
-        }
-    });
-
-    try {
-        Message mensaje = new MimeMessage(session);
-        mensaje.setFrom(new InternetAddress(remitente));
-        mensaje.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destino));
-        mensaje.setSubject("Recuperacion de contrasena - Sistema Biblioteca");
-        mensaje.setText(
-                "Hola " + nombre + ",\n\n"
-                + "Tu contrasena es: " + contrasena + "\n\n"
-                + "Sistema de Gestion Biblioteca"
-        );
-
-        Transport.send(mensaje);
-
-        JOptionPane.showMessageDialog(this,
-                "Correo enviado a: " + destino,
-                "Exito",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        // Volver al login
-        new FrmLogin().setVisible(true);
-        this.dispose();
-        
-
-    } catch (Exception e) {
-        // Mostrar error completo para diagnosticar
-    JOptionPane.showMessageDialog(this,
-            "Error completo:\n" + e.toString(),
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    e.printStackTrace(); // imprime en consola de NetBeans
-}
-    }//GEN-LAST:event_btnRecuperarActionPerformed
 
     private void campoCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCorreoActionPerformed
         // TODO add your handling code here:
@@ -207,6 +140,12 @@ props.put("mail.smtp.localhost", "biblioteca.sistema");
     private void campoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCedulaActionPerformed
+
+    private void btnRecuperarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarActionPerformed
+       
+        
+        
+    }//GEN-LAST:event_btnRecuperarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +177,8 @@ props.put("mail.smtp.localhost", "biblioteca.sistema");
     private javax.swing.JTextField campoCedula;
     private javax.swing.JTextField campoCorreo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUsuario1;
     // End of variables declaration//GEN-END:variables
 }

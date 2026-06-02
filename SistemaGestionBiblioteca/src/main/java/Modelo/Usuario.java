@@ -1,6 +1,7 @@
 package Modelo;
 
 public class Usuario {
+
     private String nombre;
     private String usuario;
     private String contrasena;
@@ -8,11 +9,11 @@ public class Usuario {
     private String correo;
 
     // Constructor vacío
-    public Usuario() {}
+    public Usuario() {
+    }
 
     // Constructor completo
-    public Usuario(String nombre, String usuario, String contrasena, 
-                   String cedula, String correo) {
+    public Usuario(String nombre, String usuario, String contrasena,String cedula, String correo) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -21,25 +22,50 @@ public class Usuario {
     }
 
     // Getters y Setters
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getUsuario() { return usuario; }
-    public void setUsuario(String usuario) { this.usuario = usuario; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public String getContrasena() { return contrasena; }
-    public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+    public String getUsuario() {
+        return usuario;
+    }
 
-    public String getCedula() { return cedula; }
-    public void setCedula(String cedula) { this.cedula = cedula; }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
     // Para mostrar en consola/debug
     @Override
     public String toString() {
-        return "Usuario{nombre=" + nombre + ", usuario=" + usuario + 
-               ", cedula=" + cedula + ", correo=" + correo + "}";
+        return "Usuario{nombre=" + nombre + ", usuario=" + usuario
+                + ", cedula=" + cedula + ", correo=" + correo + "}";
     }
 }
