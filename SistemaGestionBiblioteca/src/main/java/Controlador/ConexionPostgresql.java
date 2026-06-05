@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,29 +37,31 @@ public class ConexionPostgresql {
         }
         return instancia;
     }
-    
-    public void registrarUsuario(String nombre, String usuario, String contrasenia, int cedula, String correo){
-        try{
+
+    public void registrarUsuario(String nombre, String usuario, String contrasenia, int cedula, String correo) {
+        try {
             PreparedStatement registrar = conexion.prepareStatement(
-            "INSERT INTO registros(nombre, usuario, contrasenia, cedula, correo) VALUES(?,?,?,?,?)"); 
-            
-            registrar.setString(1, nombre); 
+                    "INSERT INTO registros(nombre, usuario, contrasenia, cedula, correo) VALUES(?,?,?,?,?)");
+
+            registrar.setString(1, nombre);
             registrar.setString(2, usuario);
-            registrar.setString(3, contrasenia); 
-            registrar.setInt(4, cedula); 
+            registrar.setString(3, contrasenia);
+            registrar.setInt(4, cedula);
             registrar.setString(5, correo);
-            
-            registrar.executeUpdate(); 
-            
+
+            registrar.executeUpdate();
+
             System.out.println("Registro exitoso");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error al registrar usuario: " + e.getMessage());
         }
     }
 
-    public boolean confirmarCredenciales(String usuario, String contrasenia) {
+    public Usuario confirmarCredenciales(String usuario, String contrasenia) {
+        Usuario usuarioActivo = new Usuario();
         try {
-            PreparedStatement recuperar = conexion.prepareStatement("SELECT usuario, contrasenia FROM registros WHERE usaurios = ? AND contrasenia = ?");
+            PreparedStatement recuperar = conexion.prepareStatement(
+             "SELECT nombre, usuario, contrasenia, cedula, correo FROM registros");
 
             recuperar.setString(1, usuario);
             recuperar.setString(2, contrasenia);
@@ -66,18 +69,21 @@ public class ConexionPostgresql {
             ResultSet resultado = recuperar.executeQuery();
 
             if (resultado.next()) {
-                return true;
+                return new Usuario(
+                        resultado.getString("nombre"),
+                        resultado.getString("usuario"),
+                        resultado.getString("contrasenia"),
+                        resultado.getString("cedula"),
+                        resultado.getString("correo"));
             } else {
-                return false;
+                return null;
             }
 
         } catch (SQLException e) {
             System.out.println("Error al confirmar credenciales" + e.getMessage());
-            return false;
+            return null;
         }
 
     }
-    
-   
 
 }

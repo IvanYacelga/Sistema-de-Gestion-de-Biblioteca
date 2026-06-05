@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Modelo.Usuario;
+
 /**
  *
  * @author lnn
@@ -11,13 +13,12 @@ package Vista;
 public class FrmMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMenu.class.getName());
-
-    /**
-     * Creates new form FrmMenu
-     */
-    public FrmMenu() {
+    private Usuario activo; 
+    
+    public FrmMenu(Usuario usuarioActivo) {
         initComponents();
-        setLocationRelativeTo(null); // Centrar la ventana
+        setLocationRelativeTo(null); 
+        this.activo = usuarioActivo; 
     }
 
     /**
@@ -68,8 +69,8 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmMenu().setVisible(true));
+        Usuario prueba = new Usuario("admin", "admin123", "ad123", "999999", "admin@gmail.com"); 
+        java.awt.EventQueue.invokeLater(() -> new FrmMenu(prueba).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

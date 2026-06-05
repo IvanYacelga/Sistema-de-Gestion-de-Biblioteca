@@ -146,12 +146,16 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
+
+        //Crear un objeto para cada credencial
+      
         String usuario = txtUsuario.getText(); 
         String contrasenia = txtClave.getText(); 
         
-        if(conexion.confirmarCredenciales(usuario, contrasenia)){
-            new FrmMenu().setVisible(true); 
+        Usuario usuarioActive = conexion.confirmarCredenciales(usuario, contrasenia); 
+
+        if(usuarioActive!=null){
+            new FrmMenu(usuarioActive).setVisible(true); 
             this.dispose(); 
         }else{
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos"); 
