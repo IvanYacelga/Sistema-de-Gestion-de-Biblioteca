@@ -12,14 +12,14 @@ public class ConexionPostgresql {
 
     private static ConexionPostgresql instancia;
     private Connection conexion;
-    private String nombre = "postgres";
-    private String clave = "admin123";
+    private String nombre = "neondb_owner";
+    private String clave = "npg_ySBn9Mq1IdWJ";
 
     private ConexionPostgresql() {
     }
 
     public void establecerConexion(String host, int puerto, String nombreBase) {
-        String url = String.format("jdbc:postgresql://%s:%d/%s", host, puerto, nombreBase);
+        String url = String.format("jdbc:postgresql://ep-restless-mountain-ac7s461s.sa-east-1.aws.neon.tech/neondb?sslmode=require");
         try {
             this.conexion = DriverManager.getConnection(url, nombre, clave);
             System.out.println("Se establecio la conexion Correctamente");
@@ -58,10 +58,10 @@ public class ConexionPostgresql {
     }
 
     public Usuario confirmarCredenciales(String usuario, String contrasenia) {
-        Usuario usuarioActivo = new Usuario();
+
         try {
             PreparedStatement recuperar = conexion.prepareStatement(
-             "SELECT nombre, usuario, contrasenia, cedula, correo FROM registros");
+             "SELECT nombre, usuario, contrasenia, cedula, correo FROM registros WHERE usuario = ? AND contrasenia = ? ");
 
             recuperar.setString(1, usuario);
             recuperar.setString(2, contrasenia);
