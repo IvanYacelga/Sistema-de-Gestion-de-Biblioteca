@@ -170,7 +170,6 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         btnPanelRegistrar.setMaximumSize(new java.awt.Dimension(39, 37));
         btnPanelRegistrar.setMinimumSize(new java.awt.Dimension(39, 37));
         btnPanelRegistrar.setPreferredSize(new java.awt.Dimension(39, 37));
-        btnPanelRegistrar.setRolloverEnabled(false);
         btnPanelRegistrar.addActionListener(this::btnPanelRegistrarActionPerformed);
 
         javax.swing.GroupLayout panelBoton2Layout = new javax.swing.GroupLayout(panelBoton2);
@@ -257,7 +256,6 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         btnPanelBuscar.setMaximumSize(new java.awt.Dimension(39, 37));
         btnPanelBuscar.setMinimumSize(new java.awt.Dimension(39, 37));
         btnPanelBuscar.setPreferredSize(new java.awt.Dimension(39, 37));
-        btnPanelBuscar.setRolloverEnabled(false);
         btnPanelBuscar.addActionListener(this::btnPanelBuscarActionPerformed);
 
         javax.swing.GroupLayout panelBoton1Layout = new javax.swing.GroupLayout(panelBoton1);
@@ -395,7 +393,6 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         btnPanelEliminar.setMaximumSize(new java.awt.Dimension(39, 37));
         btnPanelEliminar.setMinimumSize(new java.awt.Dimension(39, 37));
         btnPanelEliminar.setPreferredSize(new java.awt.Dimension(39, 37));
-        btnPanelEliminar.setRolloverEnabled(false);
         btnPanelEliminar.addActionListener(this::btnPanelEliminarActionPerformed);
 
         javax.swing.GroupLayout panelBotonEliminarLayout = new javax.swing.GroupLayout(panelBotonEliminar);

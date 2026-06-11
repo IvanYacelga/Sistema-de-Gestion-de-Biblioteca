@@ -42,7 +42,7 @@ public class ConexionPostgresql {
         try {
             PreparedStatement registrar = conexion.prepareStatement(
                     "INSERT INTO registros(nombre, usuario, contrasenia, cedula, correo) VALUES(?,?,?,?,?)");
-
+   
             registrar.setString(1, nombre);
             registrar.setString(2, usuario);
             registrar.setString(3, contrasenia);
@@ -61,7 +61,7 @@ public class ConexionPostgresql {
 
         try {
             PreparedStatement recuperar = conexion.prepareStatement(
-             "SELECT nombre, usuario, contrasenia, cedula, correo FROM registros WHERE usuario = ? AND contrasenia = ? ");
+                    "SELECT nombre, usuario, contrasenia, cedula, correo FROM registros WHERE usuario = ? AND contrasenia = ? ");
 
             recuperar.setString(1, usuario);
             recuperar.setString(2, contrasenia);
