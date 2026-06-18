@@ -1,34 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author ivany
- */
 public class Libro {
-
-    private int id;
+    private String isbn;                   // PK
+    private String categoriaIdcategoria;   // FK → categoria(id_categoria), ahora varchar
     private String titulo;
     private String autor;
-    private String editorial;
-    private String isbn;
-    private String categoria;
     private int cantidad;
+    private String editorial;
     private int anio;
     private String estado;
 
     // Constructor completo
-    public Libro(String titulo, String autor, String editorial, String isbn,
-            String categoria, int cantidad, int anio, String estado) {
+    public Libro(String isbn, String categoriaIdcategoria, String titulo,
+            String autor, int cantidad, String editorial,
+            int anio, String estado) {
+        this.isbn = isbn;
+        this.categoriaIdcategoria = categoriaIdcategoria;
         this.titulo = titulo;
         this.autor = autor;
-        this.editorial = editorial;
-        this.isbn = isbn;
-        this.categoria = categoria;
         this.cantidad = cantidad;
+        this.editorial = editorial;
         this.anio = anio;
         this.estado = estado;
     }
@@ -38,12 +29,20 @@ public class Libro {
     }
 
     // Getters y Setters
-    public int getId() {
-        return id;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getCategoriaIdcategoria() {
+        return categoriaIdcategoria;
+    }
+
+    public void setCategoriaIdcategoria(String v) {
+        this.categoriaIdcategoria = v;
     }
 
     public String getTitulo() {
@@ -62,36 +61,20 @@ public class Libro {
         this.autor = autor;
     }
 
-    public String getEditorial() {
-        return editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public String getEditorial() {
+        return editorial;
+    }
+
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
 
     public int getAnio() {

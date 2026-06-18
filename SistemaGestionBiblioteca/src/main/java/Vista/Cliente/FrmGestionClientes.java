@@ -4,6 +4,12 @@
  */
 package Vista.Cliente;
 
+import Controlador.ConexionPostgresql;
+import Modelo.UsuarioAdministrador;
+import Vista.FrmMenu;
+import Vista.Prestamo.FrmGestionPrestamos;
+
+
 /**
  *
  * @author ivany
@@ -15,8 +21,13 @@ public class FrmGestionClientes extends javax.swing.JFrame {
     /**
      * Creates new form FrmGestionClientes
      */
-    public FrmGestionClientes() {
+    ConexionPostgresql conexion; 
+    private UsuarioAdministrador activo; 
+    public FrmGestionClientes(UsuarioAdministrador activo) {
         initComponents();
+        this.conexion = ConexionPostgresql.getInstancia(); 
+        this.activo = activo;
+        
     }
 
     /**
@@ -375,23 +386,29 @@ public class FrmGestionClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarClienteActionPerformed
-        // TODO add your handling code here:
+      new registrarCliente(activo).setVisible(true); 
+      this.dispose(); 
     }//GEN-LAST:event_registrarClienteActionPerformed
 
     private void eliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClienteActionPerformed
-        // TODO add your handling code here:
+        new eliminarCliente(activo).setVisible(true); 
+        this.dispose(); 
     }//GEN-LAST:event_eliminarClienteActionPerformed
 
     private void consultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarClienteActionPerformed
-        // TODO add your handling code here:
+        new consultarCliente(activo).setVisible(true); 
+        this.dispose(); 
     }//GEN-LAST:event_consultarClienteActionPerformed
 
     private void editarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarClienteActionPerformed
-        // TODO add your handling code here:
+
+        new editarCliente(activo).setVisible(true); 
+        this.dispose(); 
     }//GEN-LAST:event_editarClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new FrmMenu(activo).setVisible(true); 
+        this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -416,8 +433,12 @@ public class FrmGestionClientes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmGestionClientes().setVisible(true));
+UsuarioAdministrador prueba = new UsuarioAdministrador("admin", "admin123", "ad123", "1005370158", "admin@gmail.com"); 
+        java.awt.EventQueue.invokeLater(() -> new FrmGestionClientes(prueba).setVisible(true));   
+    
     }
+       
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton consultarCliente;

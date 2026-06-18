@@ -4,6 +4,9 @@
  */
 package Vista.Libro;
 
+import Modelo.UsuarioAdministrador;
+import Vista.Cliente.FrmGestionClientes;
+import Vista.FrmMenu;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 
@@ -15,14 +18,13 @@ public class FrmGestionLibros extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmGestionLibros.class.getName());
 
-    /**
-     * Creates new form FrmGestionLibros
-     */
-    public FrmGestionLibros() {
+    UsuarioAdministrador activo; 
+    public FrmGestionLibros(UsuarioAdministrador activo) {
         initComponents();
         setSize(900, 600);
         setMinimumSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
+        this.activo = activo; 
     }
 
     /**
@@ -440,19 +442,34 @@ public class FrmGestionLibros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPanelEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPanelEliminarActionPerformed
+    new eliminarLibro(activo).setVisible(true); 
+     this.dispose();
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPanelEliminarActionPerformed
 
     private void btnPanelBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPanelBuscarActionPerformed
+
+    new buscarLibros(activo).setVisible(true); 
+     this.dispose();
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPanelBuscarActionPerformed
 
     private void btnPanelRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPanelRegistrarActionPerformed
+
+     new registrarLibro(activo).setVisible(true); 
+     this.dispose();
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPanelRegistrarActionPerformed
 
     private void btnRegresarMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarMenuPrincipalActionPerformed
-        // TODO add your handling code here:
+ new FrmMenu(activo).setVisible(true); 
+        this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarMenuPrincipalActionPerformed
 
     /**
@@ -477,7 +494,8 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmGestionLibros().setVisible(true));
+        UsuarioAdministrador prueba = new UsuarioAdministrador("admin", "admin123", "ad123", "1005370158", "admin@gmail.com"); 
+        java.awt.EventQueue.invokeLater(() -> new FrmGestionLibros(prueba).setVisible(true)); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Usuario {
+public class UsuarioAdministrador {
 
     private String nombre;
     private String usuario;
@@ -8,12 +8,10 @@ public class Usuario {
     private String cedula;
     private String correo;
 
-    // Constructor vacío
-    public Usuario() {
+    public UsuarioAdministrador() {
     }
 
-    // Constructor completo
-    public Usuario(String nombre, String usuario, String contrasena,String cedula, String correo) {
+    public UsuarioAdministrador(String nombre, String usuario, String contrasena,String cedula, String correo) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -21,7 +19,6 @@ public class Usuario {
         this.correo = correo;
     }
 
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -62,7 +59,6 @@ public class Usuario {
         this.correo = correo;
     }
 
-    // Para mostrar en consola/debug
     @Override
     public String toString() {
         return "Usuario{nombre=" + nombre + ", usuario=" + usuario

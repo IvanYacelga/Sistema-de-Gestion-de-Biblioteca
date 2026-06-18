@@ -12,7 +12,7 @@ import Vista.FrmRecuperacion;
 import Controlador.LoginControlador;
 import Controlador.UsuarioControlador;
 import Modelo.Login;
-import Modelo.Usuario;
+import Modelo.UsuarioAdministrador;
 import javax.swing.JOptionPane;
 
 public class FrmLogin extends javax.swing.JFrame {
@@ -148,18 +148,17 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
         //Crear un objeto para cada credencial
-      
-        String usuario = txtUsuario.getText(); 
-        String contrasenia = txtClave.getText(); 
-        
-        Usuario usuarioActive = conexion.confirmarCredenciales(usuario, contrasenia); 
+   String usuario    = txtUsuario.getText();
+    String contrasenia = txtClave.getText();
 
-        if(usuarioActive!=null){
-            new FrmMenu(usuarioActive).setVisible(true); 
-            this.dispose(); 
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos"); 
-        }
+    UsuarioAdministrador usuarioActivo = conexion.confirmarCredenciales(usuario, contrasenia);
+
+    if (usuarioActivo != null) {
+        new FrmMenu(usuarioActivo).setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuario o contrasenia incorrectos");
+    }
    
  
     }//GEN-LAST:event_btnIngresarActionPerformed

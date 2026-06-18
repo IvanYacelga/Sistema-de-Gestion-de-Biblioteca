@@ -1,6 +1,6 @@
 package Controlador;
 
-import Modelo.Usuario;
+import Modelo.UsuarioAdministrador;
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class UsuarioControlador {
     // ─────────────────────────────────────────
     // REGISTRAR usuario nuevo
     // ─────────────────────────────────────────
-    public String registrarUsuario(Usuario nuevo) {
+    public String registrarUsuario(UsuarioAdministrador nuevo) {
 
         // Validar cédula: solo números, exactamente 10 dígitos
         if (!nuevo.getCedula().matches("[0-9]{10}")) {
@@ -28,10 +28,10 @@ public class UsuarioControlador {
         }
 
         // Cargar lista actual
-        List<Usuario> lista = cargarUsuarios();
+        List<UsuarioAdministrador> lista = cargarUsuarios();
 
         // Verificar que usuario no exista
-        for (Usuario u : lista) {
+        for (UsuarioAdministrador u : lista) {
             if (u.getUsuario().equalsIgnoreCase(nuevo.getUsuario())) {
                 return "El nombre de usuario ya está registrado.";
             }
@@ -55,8 +55,8 @@ public class UsuarioControlador {
     // ─────────────────────────────────────────
     // CARGAR usuarios desde JSON
     // ─────────────────────────────────────────
-    public List<Usuario> cargarUsuarios() {
-        List<Usuario> lista = new ArrayList<>();
+    public List<UsuarioAdministrador> cargarUsuarios() {
+        List<UsuarioAdministrador> lista = new ArrayList<>();
 
         File archivo = new File(RUTA_JSON);
         if (!archivo.exists()) {
@@ -81,7 +81,7 @@ public class UsuarioControlador {
 
             for (String obj : objetos) {
                 obj = obj.replace("{", "").replace("}", "").trim();
-                Usuario u = parsearUsuario(obj);
+                UsuarioAdministrador u = parsearUsuario(obj);
                 if (u != null) {
                     lista.add(u);
                 }
@@ -97,7 +97,7 @@ public class UsuarioControlador {
     // ─────────────────────────────────────────
     // GUARDAR lista completa en JSON
     // ─────────────────────────────────────────
-    private void guardarUsuarios(List<Usuario> lista) {
+    private void guardarUsuarios(List<UsuarioAdministrador> lista) {
         try {
             // Crear carpeta si no existe
             File carpeta = new File(System.getProperty("user.dir") + "/datos");
@@ -109,7 +109,7 @@ public class UsuarioControlador {
             sb.append("[\n");
 
             for (int i = 0; i < lista.size(); i++) {
-                Usuario u = lista.get(i);
+                UsuarioAdministrador u = lista.get(i);
                 sb.append("  {\n");
                 sb.append("    \"nombre\": \"").append(u.getNombre()).append("\",\n");
                 sb.append("    \"usuario\": \"").append(u.getUsuario()).append("\",\n");
@@ -133,13 +133,13 @@ public class UsuarioControlador {
     }
 
     // ─────────────────────────────────────────
-    // PARSEAR un objeto JSON a Usuario
+    // PARSEAR un objeto JSON a UsuarioAdministrador
     // ─────────────────────────────────────────
-    private Usuario parsearUsuario(String obj) {
+    private UsuarioAdministrador parsearUsuario(String obj) {
 
         try {
 
-            Usuario u = new Usuario();
+            UsuarioAdministrador u = new UsuarioAdministrador();
 
             String[] campos = obj.split(",");
 
@@ -198,9 +198,9 @@ public class UsuarioControlador {
     // ─────────────────────────────────────────
     public boolean validarCredenciales(String usuario, String contrasena) {
 
-        List<Usuario> lista = cargarUsuarios();
+        List<UsuarioAdministrador> lista = cargarUsuarios();
 
-        for (Usuario u : lista) {
+        for (UsuarioAdministrador u : lista) {
 
             if (usuario.equals(u.getUsuario())
                     && contrasena.equals(u.getContrasena())) {
@@ -212,9 +212,9 @@ public class UsuarioControlador {
         return false;
     }
 
-    public Usuario buscarPorCedulaYCorreo(String cedula, String correo) {
-        List<Usuario> lista = cargarUsuarios();
-        for (Usuario u : lista) {
+    public UsuarioAdministrador buscarPorCedulaYCorreo(String cedula, String correo) {
+        List<UsuarioAdministrador> lista = cargarUsuarios();
+        for (UsuarioAdministrador u : lista) {
             if (u.getCedula().equals(cedula)
                     && u.getCorreo().equalsIgnoreCase(correo)) {
                 return u;

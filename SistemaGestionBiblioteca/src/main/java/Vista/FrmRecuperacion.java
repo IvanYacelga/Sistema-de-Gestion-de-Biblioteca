@@ -5,7 +5,7 @@
 package Vista;
 
 import Controlador.UsuarioControlador;
-import Modelo.Usuario;
+import Modelo.UsuarioAdministrador;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;

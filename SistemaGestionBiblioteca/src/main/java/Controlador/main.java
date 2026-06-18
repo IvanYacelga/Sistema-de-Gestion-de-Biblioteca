@@ -6,15 +6,10 @@ package Controlador;
 
 import Vista.FrmLogin;
 
-/**
- *
- * @author ivany
- */
+
 public class main {
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     public static void main(String[] args) {
     ConexionPostgresql conexion = ConexionPostgresql.getInstancia(); 
     new FrmLogin().setVisible(true); 

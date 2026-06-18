@@ -4,6 +4,9 @@
  */
 package Vista.Prestamo;
 
+import Modelo.UsuarioAdministrador;
+import Vista.FrmMenu;
+
 /**
  *
  * @author lenno
@@ -12,11 +15,12 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmGestionPrestamos.class.getName());
 
-    /**
-     * Creates new form FrmGestionPrestamos
-     */
-    public FrmGestionPrestamos() {
+   UsuarioAdministrador activo; 
+    public FrmGestionPrestamos(UsuarioAdministrador activo) {
         initComponents();
+        this.activo = activo; 
+        
+        
     }
 
     /**
@@ -352,19 +356,25 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuPrincipalActionPerformed
+ new FrmMenu(activo).setVisible(true); 
+        this.dispose(); 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverMenuPrincipalActionPerformed
 
     private void btnGestionPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPrestarLibroActionPerformed
-        // TODO add your handling code here:
+       new prestarLibros(activo).setVisible(true); 
+       this.dispose(); 
     }//GEN-LAST:event_btnGestionPrestarLibroActionPerformed
 
     private void btnGestionDevolverLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionDevolverLibroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGestionDevolverLibroActionPerformed
+      new devolverLibros(activo).setVisible(true); 
+      
+       this.dispose();     }//GEN-LAST:event_btnGestionDevolverLibroActionPerformed
 
     private void btnGestionMultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMultasActionPerformed
-        // TODO add your handling code here:
+              new gestionMultas(activo).setVisible(true); 
+       this.dispose(); 
+        
     }//GEN-LAST:event_btnGestionMultasActionPerformed
 
     /**
@@ -389,8 +399,8 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmGestionPrestamos().setVisible(true));
-    }
+ UsuarioAdministrador prueba = new UsuarioAdministrador("admin", "admin123", "ad123", "1005370158", "admin@gmail.com");
+        java.awt.EventQueue.invokeLater(() -> new FrmGestionPrestamos(prueba).setVisible(true));    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGestionDevolverLibro;

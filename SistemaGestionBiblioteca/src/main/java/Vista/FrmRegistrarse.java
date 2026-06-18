@@ -6,7 +6,7 @@ package Vista;
 
 import Controlador.ConexionPostgresql;
 import Controlador.UsuarioControlador;
-import Modelo.Usuario;
+import Modelo.UsuarioAdministrador;
 
 // ─── Imports Java ───
 import javax.swing.JOptionPane;
@@ -203,35 +203,44 @@ public class FrmRegistrarse extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
        
-        String nombre = regNombre.getText().trim();
-        String usuario = RegUsuario.getText().trim();
-        String contrasenia = regContrasenia.getText(); 
-        String contraseniaTem = repContrasenia.getText();
-        String cedula1 = regCedula.getText(); 
-        String correo = regCorreo.getText().trim();
+         String nombre       = regNombre.getText().trim();
+    String usuario      = RegUsuario.getText().trim();
+    String contrasenia  = regContrasenia.getText();
+    String contraseniaRep = repContrasenia.getText();
+    String cedulaTexto  = regCedula.getText().trim();
+    String correo       = regCorreo.getText().trim();
 
-        if (!contrasenia.equals(contraseniaTem)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
-            return;
-        }
+    // 1. Campos vacíos primero
+    if (nombre.isEmpty() || usuario.isEmpty() || contrasenia.isEmpty()
+            || cedulaTexto.isEmpty() || correo.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
+        return;
+    }
 
-        else if (nombre.isEmpty() || usuario.isEmpty() || contrasenia.isEmpty()
-                || cedula1.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
-            return;
+    // 2. Contraseñas coinciden
+    if (!contrasenia.equals(contraseniaRep)) {
+        JOptionPane.showMessageDialog(this, "Las contrasenas no coinciden");
+        return;
+    }
 
-        }
-        int cedula = Integer.parseInt(regCedula.getText()); 
-        try{
-             conexion.registrarUsuario(nombre, usuario, contrasenia, cedula, correo);
-             JOptionPane.showMessageDialog(this, "Se ha registrado el usuario correctamente");
-             new FrmLogin().setVisible(true); 
-             this.dispose(); 
+    // 3. Cédula debe ser numérica
+    int cedula;
+    try {
+        cedula = Integer.parseInt(cedulaTexto);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "La cedula debe ser un numero");
+        return;
+    }
 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error al registrar usuario: " + e.getMessage());
-        }
-        
+    // 4. Registrar — nuevo método y orden de parámetros
+    try {
+        conexion.registrarAdministrador(cedula, nombre, correo, contrasenia, usuario);
+        JOptionPane.showMessageDialog(this, "Administrador registrado correctamente");
+        new FrmLogin().setVisible(true);
+        this.dispose();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar: " + e.getMessage());
+    }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
