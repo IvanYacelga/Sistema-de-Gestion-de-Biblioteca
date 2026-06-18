@@ -77,7 +77,7 @@ public class buscarLibro extends javax.swing.JFrame {
         lblUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 75));
         pnlHeader.add(lblUsuario, java.awt.BorderLayout.LINE_END);
 
-        getContentPane().add(pnlHeader, java.awt.BorderLayout.NORTH);
+        getContentPane().add(pnlHeader, java.awt.BorderLayout.PAGE_START);
 
         pnlCentro.setBackground(java.awt.Color.white);
         pnlCentro.setLayout(new javax.swing.BoxLayout(pnlCentro, javax.swing.BoxLayout.Y_AXIS));

@@ -26,19 +26,381 @@ public class devolverLibro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnVolver = new javax.swing.JButton();
+        lbl1 = new javax.swing.JLabel();
+        cardBusqueda = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        criterioBusquedaLibro3 = new javax.swing.JTextField();
+        criterioBusquedaLibro4 = new javax.swing.JTextField();
+        criterioBusquedaLibro5 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnBuscarLibro1 = new javax.swing.JButton();
+        btnBuscarLibro = new javax.swing.JButton();
+        pnlFooter = new javax.swing.JPanel();
+        lblFooter = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cardBusqueda1 = new javax.swing.JPanel();
+        criterioBusquedaLibro6 = new javax.swing.JTextField();
+        criterioBusquedaLibro8 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnBuscarLibro3 = new javax.swing.JButton();
+        btnBuscarLibro5 = new javax.swing.JButton();
+        pnlHeader = new javax.swing.JPanel();
+        lblTitulo1 = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+
+        btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnVolver.setText("Volver ");
+        btnVolver.setBorder(null);
+        btnVolver.setBorderPainted(false);
+        btnVolver.setFocusPainted(false);
+        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVolver.setPreferredSize(new java.awt.Dimension(150, 30));
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
+
+        lbl1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
+        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setText("Devolucion del Libro");
+        lbl1.setToolTipText("");
+        lbl1.setAlignmentX(0.5F);
+        lbl1.setAlignmentY(0.0F);
+        lbl1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        cardBusqueda.setBackground(java.awt.Color.white);
+        cardBusqueda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cardBusqueda.setPreferredSize(new java.awt.Dimension(500, 100));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Titulo", "Age", "NickName", "Employee"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        criterioBusquedaLibro3.addActionListener(this::criterioBusquedaLibro3ActionPerformed);
+
+        criterioBusquedaLibro4.addActionListener(this::criterioBusquedaLibro4ActionPerformed);
+
+        criterioBusquedaLibro5.addActionListener(this::criterioBusquedaLibro5ActionPerformed);
+
+        jLabel3.setText("Multa Generada");
+
+        jLabel4.setText("Dias de Retraso");
+
+        jLabel6.setText("Fecha de Devolucion");
+
+        jLabel10.setText("Prestamo de Activos");
+
+        javax.swing.GroupLayout cardBusquedaLayout = new javax.swing.GroupLayout(cardBusqueda);
+        cardBusqueda.setLayout(cardBusquedaLayout);
+        cardBusquedaLayout.setHorizontalGroup(
+            cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusquedaLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(criterioBusquedaLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(criterioBusquedaLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(cardBusquedaLayout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addGroup(cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(criterioBusquedaLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(86, 86, 86))
+            .addGroup(cardBusquedaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusquedaLayout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+        cardBusquedaLayout.setVerticalGroup(
+            cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusquedaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cardBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(criterioBusquedaLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(criterioBusquedaLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(criterioBusquedaLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        btnBuscarLibro1.setText("Registrar Devolucion");
+        btnBuscarLibro1.addActionListener(this::btnBuscarLibro1ActionPerformed);
+
+        btnBuscarLibro.setText("Cancelar");
+        btnBuscarLibro.addActionListener(this::btnBuscarLibroActionPerformed);
+
+        pnlFooter.setBackground(new java.awt.Color(51, 51, 51));
+        pnlFooter.setPreferredSize(new java.awt.Dimension(894, 54));
+        pnlFooter.setLayout(new java.awt.BorderLayout());
+
+        lblFooter.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblFooter.setForeground(java.awt.Color.white);
+        lblFooter.setText("Sistema de Gestión Bibliotecaria");
+        lblFooter.setAlignmentY(0.0F);
+        lblFooter.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
+        lblFooter.setFocusable(false);
+        lblFooter.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        pnlFooter.add(lblFooter, java.awt.BorderLayout.WEST);
+
+        jLabel7.setText("Registra la Devolucion de Libros Prestados");
+
+        cardBusqueda1.setBackground(java.awt.Color.white);
+        cardBusqueda1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cardBusqueda1.setPreferredSize(new java.awt.Dimension(500, 100));
+
+        criterioBusquedaLibro6.addActionListener(this::criterioBusquedaLibro6ActionPerformed);
+
+        criterioBusquedaLibro8.addActionListener(this::criterioBusquedaLibro8ActionPerformed);
+
+        jLabel8.setText("Titulo del Libro");
+
+        jLabel9.setText("Cedula del Cliente");
+
+        btnBuscarLibro3.setText("Buscar");
+        btnBuscarLibro3.addActionListener(this::btnBuscarLibro3ActionPerformed);
+
+        btnBuscarLibro5.setText("Buscar");
+        btnBuscarLibro5.addActionListener(this::btnBuscarLibro5ActionPerformed);
+
+        javax.swing.GroupLayout cardBusqueda1Layout = new javax.swing.GroupLayout(cardBusqueda1);
+        cardBusqueda1.setLayout(cardBusqueda1Layout);
+        cardBusqueda1Layout.setHorizontalGroup(
+            cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardBusqueda1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardBusqueda1Layout.createSequentialGroup()
+                        .addComponent(criterioBusquedaLibro6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(btnBuscarLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
+                .addGroup(cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(criterioBusquedaLibro8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarLibro5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        cardBusqueda1Layout.setVerticalGroup(
+            cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBuscarLibro3)
+                        .addComponent(criterioBusquedaLibro8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarLibro5))
+                    .addComponent(criterioBusquedaLibro6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        pnlHeader.setBackground(new java.awt.Color(51, 51, 51));
+        pnlHeader.setPreferredSize(new java.awt.Dimension(894, 54));
+        pnlHeader.setLayout(new java.awt.BorderLayout());
+
+        lblTitulo1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo1.setText("BiblioSmart");
+        lblTitulo1.setAlignmentY(0.0F);
+        lblTitulo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 75, 1, 1));
+        lblTitulo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblTitulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlHeader.add(lblTitulo1, java.awt.BorderLayout.LINE_START);
+
+        lblUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setText("¡Bienvenido, Admin!");
+        lblUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 75));
+        pnlHeader.add(lblUsuario, java.awt.BorderLayout.LINE_END);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(btnBuscarLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(cardBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(cardBusqueda1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(340, 340, 340))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl1)
+                        .addGap(319, 319, 319))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl1)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(cardBusqueda1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cardBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscarLibro1)
+                    .addComponent(btnBuscarLibro))
+                .addGap(19, 19, 19)
+                .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void criterioBusquedaLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioBusquedaLibro3ActionPerformed
+
+    private void criterioBusquedaLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioBusquedaLibro4ActionPerformed
+
+    private void criterioBusquedaLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioBusquedaLibro5ActionPerformed
+
+    private void btnBuscarLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarLibro1ActionPerformed
+
+    private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarLibroActionPerformed
+
+    private void criterioBusquedaLibro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioBusquedaLibro6ActionPerformed
+
+    private void criterioBusquedaLibro8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criterioBusquedaLibro8ActionPerformed
+
+    private void btnBuscarLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarLibro3ActionPerformed
+
+    private void btnBuscarLibro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarLibro5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarLibro;
+    private javax.swing.JButton btnBuscarLibro1;
+    private javax.swing.JButton btnBuscarLibro3;
+    private javax.swing.JButton btnBuscarLibro5;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JPanel cardBusqueda;
+    private javax.swing.JPanel cardBusqueda1;
+    private javax.swing.JTextField criterioBusquedaLibro3;
+    private javax.swing.JTextField criterioBusquedaLibro4;
+    private javax.swing.JTextField criterioBusquedaLibro5;
+    private javax.swing.JTextField criterioBusquedaLibro6;
+    private javax.swing.JTextField criterioBusquedaLibro8;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lblFooter;
+    private javax.swing.JLabel lblTitulo1;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPanel pnlFooter;
+    private javax.swing.JPanel pnlHeader;
     // End of variables declaration//GEN-END:variables
 }
