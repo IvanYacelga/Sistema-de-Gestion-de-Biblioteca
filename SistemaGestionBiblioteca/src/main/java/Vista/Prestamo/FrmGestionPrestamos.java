@@ -372,7 +372,7 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
        this.dispose();     }//GEN-LAST:event_btnGestionDevolverLibroActionPerformed
 
     private void btnGestionMultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMultasActionPerformed
-              new gestionMultas(activo).setVisible(true); 
+        new gestionMultas(activo).setVisible(true); 
        this.dispose(); 
         
     }//GEN-LAST:event_btnGestionMultasActionPerformed
