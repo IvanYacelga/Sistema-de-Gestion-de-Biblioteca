@@ -260,7 +260,9 @@ Proyecto desarrollado como parte de la asignatura de Ingeniería de Software.
 ### Integrantes
 
 - Freddy Joel Fuentes Escobar
-- [Agregar integrantes del equipo]
+- Lennon Arias 
+- Erick Sabando 
+- Iván Yacelga 
 
 ---
 
@@ -270,24 +272,5 @@ Este proyecto fue desarrollado con fines académicos y educativos.
 
 ---
 
-## 📷 Capturas del Sistema
-
-### Pantalla Principal
-
-> Agregar captura de la pantalla principal del sistema.
-
-### Gestión de Usuarios
-
-> Agregar captura del módulo de usuarios.
-
-### Gestión de Libros
-
-> Agregar captura del módulo de libros.
-
-### Gestión de Préstamos
-
-> Agregar captura del módulo de préstamos.
-
-### Gestión de Multas
 
 > Agregar captura del módulo de multas.
