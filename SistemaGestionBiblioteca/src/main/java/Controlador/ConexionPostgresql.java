@@ -25,24 +25,24 @@ public class ConexionPostgresql {
     }
 
     // Establece la conexión con la base de datos
-  public static void establecerConexion() {
-    String url = "jdbc:postgresql://ep-restless-mountain-ac7s461s-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require";
-    try {
-        conexion = DriverManager.getConnection(url, usuario, clave);
-        System.out.println("Conexion establecida correctamente");
-    } catch (SQLException e) {
-        System.out.println("Error al establecer la conexion: " + e.getMessage());
+    public static void establecerConexion() {
+        String url = "jdbc:postgresql://ep-restless-mountain-ac7s461s-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require";
+        try {
+            conexion = DriverManager.getConnection(url, usuario, clave);
+            System.out.println("Conexion establecida correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error al establecer la conexion: " + e.getMessage());
+        }
     }
-}
 
     // Patrón Singleton
-   public static ConexionPostgresql getInstancia() {
-    if (instancia == null) {
-        instancia = new ConexionPostgresql();
-        instancia.establecerConexion();  // sin parametros
+    public static ConexionPostgresql getInstancia() {
+        if (instancia == null) {
+            instancia = new ConexionPostgresql();
+            instancia.establecerConexion();  // sin parametros
+        }
+        return instancia;
     }
-    return instancia;
-}
 
     // INSERT → usuarios_administradores
     public static void registrarAdministrador(int cedula, String nombre,
@@ -219,7 +219,75 @@ public class ConexionPostgresql {
         }
     }
 
+    public boolean verificarCredenciales(String correo, String cedula) {
+
+        String sql = "SELECT cedula FROM usuarios_administradores WHERE correo_electronico = ? AND cedula = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setString(1, correo);
+            ps.setInt(2, Integer.parseInt(cedula));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next(); 
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("La cédula debe ser un número");
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error al verificar credenciales: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public String obtenerCorreoPorCedula(String cedula) {
+    String sql = "SELECT correo_electronico FROM usuarios_administradores WHERE cedula = ?";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setInt(1, Integer.parseInt(cedula));
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getString("correo_electronico");
+            }
+            return null; // no se encontró el cliente
+        }
+
+    } catch (NumberFormatException e) {
+        System.out.println("La cédula debe ser un número");
+        return null;
+    } catch (SQLException e) {
+        System.out.println("Error al obtener correo: " + e.getMessage());
+        return null;
+    }
+    
+}
+    
+    public static String verificarYObtenerContrasenia(String correo, String cedula) {
+    String sql = "SELECT contrasenia FROM usuarios_administradores WHERE correo_electronico = ? AND cedula = ?";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setString(1, correo);
+        ps.setInt(2, Integer.parseInt(cedula));
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getString("contrasenia");
+            }
+            return null; // no encontró coincidencia
+        }
+
+    } catch (NumberFormatException e) {
+        System.out.println("La cédula debe ser un número");
+        return null;
+    } catch (SQLException e) {
+        System.out.println("Error al verificar credenciales: " + e.getMessage());
+        return null;
+    }
+}
+    
     //LIBRO FUNCIONES ----------------------------------------------------------------------------------------------
+
     public boolean registrarLibro(String isbn, String categoria, String titulo, String autor,
             String cantidad, String editorial, String anio, String estado) {
 
@@ -248,119 +316,62 @@ public class ConexionPostgresql {
             return false;
         }
     }
-    
-    public String obtenerIdCategoria(String nombreCategoria) {
-    String sql = "SELECT id_categoria FROM categoria WHERE nombre = ?";
- 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setString(1, nombreCategoria);
- 
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("id_categoria");
-            }
-        }
- 
-    } catch (SQLException e) {
-        System.out.println("Error al obtener id de categoría: " + e.getMessage());
-    }
- 
-    return null;
-}
-  
- private List<Libro> buscarPorCategoria(String criterio) {
-    List<Libro> lista = new ArrayList<>();
-    String sql = "SELECT l.isbn, l.categoria_idcategoria, l.titulo, l.autor, "
-               + "l.cantidad, l.editorial, l.anio, l.estado "
-               + "FROM libros l "
-               + "JOIN categoria c ON l.categoria_idcategoria = c.id_categoria "
-               + "WHERE c.nombre ILIKE ?";
 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setString(1, "%" + criterio + "%");
-        try (ResultSet rs = ps.executeQuery()) {
-            while (rs.next()) {
-                lista.add(new Libro(
-                    rs.getString("isbn"),
-                    rs.getString("categoria_idcategoria"),
-                    rs.getString("titulo"),
-                    rs.getString("autor"),
-                    rs.getInt("cantidad"),
-                    rs.getString("editorial"),
-                    rs.getInt("anio"),
-                    rs.getString("estado")
-                ));
+    public String obtenerIdCategoria(String nombreCategoria) {
+        String sql = "SELECT id_categoria FROM categoria WHERE nombre = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setString(1, nombreCategoria);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("id_categoria");
+                }
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener id de categoría: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Error al buscar por género: " + e.getMessage());
+
+        return null;
     }
-    return lista;
-}
-public List<Libro> leerDatosLibros() {
-    List<Libro> lista = new ArrayList<>();
-    String sql = "SELECT isbn, categoria_idcategoria, titulo, autor, cantidad, editorial, anio, estado FROM libros";
- 
-    try (PreparedStatement ps = conexion.prepareStatement(sql);
-         ResultSet rs = ps.executeQuery()) {
- 
-        while (rs.next()) {
-            Libro l = new Libro(
-                    rs.getString("isbn"),
-                    rs.getString("categoria_idcategoria"),
-                    rs.getString("titulo"),
-                    rs.getString("autor"),
-                    rs.getInt("cantidad"),
-                    rs.getString("editorial"),
-                    rs.getInt("anio"),
-                    rs.getString("estado")
-            );
-            lista.add(l);
+
+    private List<Libro> buscarPorCategoria(String criterio) {
+        List<Libro> lista = new ArrayList<>();
+        String sql = "SELECT l.isbn, l.categoria_idcategoria, l.titulo, l.autor, "
+                + "l.cantidad, l.editorial, l.anio, l.estado "
+                + "FROM libros l "
+                + "JOIN categoria c ON l.categoria_idcategoria = c.id_categoria "
+                + "WHERE c.nombre ILIKE ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setString(1, "%" + criterio + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(new Libro(
+                            rs.getString("isbn"),
+                            rs.getString("categoria_idcategoria"),
+                            rs.getString("titulo"),
+                            rs.getString("autor"),
+                            rs.getInt("cantidad"),
+                            rs.getString("editorial"),
+                            rs.getInt("anio"),
+                            rs.getString("estado")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar por género: " + e.getMessage());
         }
- 
-    } catch (SQLException e) {
-        System.out.println("Error al leer libros: " + e.getMessage());
+        return lista;
     }
- 
-    return lista;
-}
- 
- 
-public List<Libro> buscarLibro(String columna, String criterio) {
-    List<Libro> lista = new ArrayList<>();
- 
- String columnaSql;
-switch (columna) {
-    case "ISMB":        
-    case "Isbn":
-        columnaSql = "isbn";
-        break;
-    case "Nombre":     
-    case "Titulo":
-        columnaSql = "titulo";
-        break;
-    case "Autor":
-        columnaSql = "autor";
-        break;
-    case "Editorial":
-        columnaSql = "editorial";
-        break;
-    case "Genero":      // ← como viene del combo
-    case "Categoria":
-        // JOIN por nombre de categoría
-        return buscarPorCategoria(criterio);
-    default:
-        columnaSql = "titulo";
-}
- 
-    String sql = "SELECT isbn, categoria_idcategoria, titulo, autor, cantidad, editorial, anio, estado "
-            + "FROM libros WHERE " + columnaSql + " ILIKE ?";
- 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
- 
-        ps.setString(1, "%" + criterio + "%");
- 
-        try (ResultSet rs = ps.executeQuery()) {
+
+    public List<Libro> leerDatosLibros() {
+        List<Libro> lista = new ArrayList<>();
+        String sql = "SELECT isbn, categoria_idcategoria, titulo, autor, cantidad, editorial, anio, estado FROM libros";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
                 Libro l = new Libro(
                         rs.getString("isbn"),
@@ -374,214 +385,267 @@ switch (columna) {
                 );
                 lista.add(l);
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error al leer libros: " + e.getMessage());
         }
- 
-    } catch (SQLException e) {
-        System.out.println("Error al buscar libro: " + e.getMessage());
+
+        return lista;
     }
-    return lista;
-}
- 
-public boolean actualizarLibro(String isbn, String categoria, String titulo, String autor,
-                                String cantidad, String editorial, String anio, String estado) {
- 
-    try {
-        String orden = "UPDATE libros SET categoria_idcategoria = ?, titulo = ?, autor = ?, "
-                + "cantidad = ?, editorial = ?, anio = ?, estado = ? WHERE isbn = ?";
-        PreparedStatement ps = conexion.prepareStatement(orden);
- 
-        ps.setString(1, categoria);
-        ps.setString(2, titulo);
-        ps.setString(3, autor);
-        ps.setInt(4, Integer.parseInt(cantidad));
-        ps.setString(5, editorial);
-        ps.setInt(6, Integer.parseInt(anio));
-        ps.setString(7, estado);
-        ps.setString(8, isbn);
-        ps.executeUpdate();
- 
-        return true;
-    } catch (SQLException e) {
-        System.out.println("Error al actualizar libro");
-        return false;
- 
+
+    public List<Libro> buscarLibro(String columna, String criterio) {
+        List<Libro> lista = new ArrayList<>();
+
+        String columnaSql;
+        switch (columna) {
+            case "ISMB":
+            case "Isbn":
+                columnaSql = "isbn";
+                break;
+            case "Nombre":
+            case "Titulo":
+                columnaSql = "titulo";
+                break;
+            case "Autor":
+                columnaSql = "autor";
+                break;
+            case "Editorial":
+                columnaSql = "editorial";
+                break;
+            case "Genero":      // ← como viene del combo
+            case "Categoria":
+                // JOIN por nombre de categoría
+                return buscarPorCategoria(criterio);
+            default:
+                columnaSql = "titulo";
+        }
+
+        String sql = "SELECT isbn, categoria_idcategoria, titulo, autor, cantidad, editorial, anio, estado "
+                + "FROM libros WHERE " + columnaSql + " ILIKE ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + criterio + "%");
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Libro l = new Libro(
+                            rs.getString("isbn"),
+                            rs.getString("categoria_idcategoria"),
+                            rs.getString("titulo"),
+                            rs.getString("autor"),
+                            rs.getInt("cantidad"),
+                            rs.getString("editorial"),
+                            rs.getInt("anio"),
+                            rs.getString("estado")
+                    );
+                    lista.add(l);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar libro: " + e.getMessage());
+        }
+        return lista;
     }
-}
- 
-public boolean eliminarLibro(String isbn) {
-    String orden = "DELETE FROM libros WHERE isbn = ?";
- 
-    try (PreparedStatement ps = conexion.prepareStatement(orden)) {
-        ps.setString(1, isbn);
- 
-        int filasEliminadas = ps.executeUpdate();
-        return filasEliminadas > 0;
- 
-    } catch (SQLException e) {
-        System.out.println("Error al eliminar libro: " + e.getMessage());
-        return false;
+
+    public boolean actualizarLibro(String isbn, String categoria, String titulo, String autor,
+            String cantidad, String editorial, String anio, String estado) {
+
+        try {
+            String orden = "UPDATE libros SET categoria_idcategoria = ?, titulo = ?, autor = ?, "
+                    + "cantidad = ?, editorial = ?, anio = ?, estado = ? WHERE isbn = ?";
+            PreparedStatement ps = conexion.prepareStatement(orden);
+
+            ps.setString(1, categoria);
+            ps.setString(2, titulo);
+            ps.setString(3, autor);
+            ps.setInt(4, Integer.parseInt(cantidad));
+            ps.setString(5, editorial);
+            ps.setInt(6, Integer.parseInt(anio));
+            ps.setString(7, estado);
+            ps.setString(8, isbn);
+            ps.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar libro");
+            return false;
+
+        }
     }
-}
- 
+
+    public boolean eliminarLibro(String isbn) {
+        String orden = "DELETE FROM libros WHERE isbn = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(orden)) {
+            ps.setString(1, isbn);
+
+            int filasEliminadas = ps.executeUpdate();
+            return filasEliminadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar libro: " + e.getMessage());
+            return false;
+        }
+    }
 
 //FUNCIONES PRESTAMOS------------------------------------------------
-public boolean registrarPrestamo(String cedulaCliente, String libroIsbn,
-        String estado, LocalDate fechaPrestamo, LocalDate fechaDevolucion, String cedulaAdmin) {
+    public boolean registrarPrestamo(String cedulaCliente, String libroIsbn,
+            String estado, LocalDate fechaPrestamo, LocalDate fechaDevolucion, String cedulaAdmin) {
 
-    String sql = "INSERT INTO prestamos "
-            + "(cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula) "
-            + "VALUES (?, ?, ?, ?, ?, ?)";  // sin id_prestamos
+        String sql = "INSERT INTO prestamos "
+                + "(cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";  // sin id_prestamos
 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setInt(1, Integer.parseInt(cedulaCliente));
-        ps.setString(2, libroIsbn);
-        ps.setString(3, estado);
-        ps.setDate(4, java.sql.Date.valueOf(fechaPrestamo));
-        ps.setDate(5, java.sql.Date.valueOf(fechaDevolucion));
-        ps.setInt(6, Integer.parseInt(cedulaAdmin));
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(cedulaCliente));
+            ps.setString(2, libroIsbn);
+            ps.setString(3, estado);
+            ps.setDate(4, java.sql.Date.valueOf(fechaPrestamo));
+            ps.setDate(5, java.sql.Date.valueOf(fechaDevolucion));
+            ps.setInt(6, Integer.parseInt(cedulaAdmin));
 
-        ps.executeUpdate();
-        return true;
+            ps.executeUpdate();
+            return true;
 
-    } catch (NumberFormatException e) {
-        System.out.println("Cedula y admin deben ser numeros");
-        return false;
-    } catch (SQLException e) {
-        System.out.println("Error al registrar prestamo: " + e.getMessage());
-        return false;
-    }
-}
-
-public List<Prestamo> leerDatosPrestamos() {
-    List<Prestamo> lista = new ArrayList<>();
-    String sql = "SELECT id_prestamos, cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula FROM prestamos";
-
-    try (PreparedStatement ps = conexion.prepareStatement(sql);
-         ResultSet rs = ps.executeQuery()) {
-
-        while (rs.next()) {
-            Prestamo p = new Prestamo(
-                    rs.getInt("id_prestamos"),
-                    rs.getInt("cliente_cedula"),
-                    rs.getString("libro_isbn"),
-                    rs.getDate("fecha_prestamo").toLocalDate(),    // sql.Date -> LocalDate
-                    rs.getDate("fecha_devolucion").toLocalDate(),
-                    rs.getString("estado"),
-                    rs.getInt("usuarios_administradores_cedula")
-            );
-            lista.add(p);
+        } catch (NumberFormatException e) {
+            System.out.println("Cedula y admin deben ser numeros");
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error al registrar prestamo: " + e.getMessage());
+            return false;
         }
-
-    } catch (SQLException e) {
-        System.out.println("Error al leer prestamos: " + e.getMessage());
     }
-    return lista;
-}
 
-public boolean actualizarPrestamo(String idPrestamo, String cedulaCliente, String libroIsbn,
-        String estado, LocalDate fechaPrestamo, LocalDate fechaDevolucion, String cedulaAdmin) {
+    public List<Prestamo> leerDatosPrestamos() {
+        List<Prestamo> lista = new ArrayList<>();
+        String sql = "SELECT id_prestamos, cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula FROM prestamos";
 
-    try {
-        String orden = "UPDATE prestamos SET cliente_cedula = ?, libro_isbn = ?, estado = ?, "
-                + "fecha_prestamo = ?, fecha_devolucion = ?, usuarios_administradores_cedula = ? WHERE id_prestamos = ?";
-        PreparedStatement ps = conexion.prepareStatement(orden);
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
-        ps.setInt(1, Integer.parseInt(cedulaCliente));
-        ps.setString(2, libroIsbn);
-        ps.setString(3, estado);
-        ps.setDate(4, java.sql.Date.valueOf(fechaPrestamo));      // LocalDate -> sql.Date
-        ps.setDate(5, java.sql.Date.valueOf(fechaDevolucion));
-        ps.setInt(6, Integer.parseInt(cedulaAdmin));
-        ps.setInt(7, Integer.parseInt(idPrestamo));
-        ps.executeUpdate();
-
-        return true;
-    } catch (SQLException e) {
-        System.out.println("Error al actualizar prestamo");
-        return false;
-    }
-}
-
-public boolean eliminarPrestamo(String idPrestamo) {
-    String orden = "DELETE FROM prestamos WHERE id_prestamos = ?";
-
-    try (PreparedStatement ps = conexion.prepareStatement(orden)) {
-        ps.setInt(1, Integer.parseInt(idPrestamo));
-
-        int filasEliminadas = ps.executeUpdate();
-        return filasEliminadas > 0;
-
-    } catch (SQLException e) {
-        System.out.println("Error al eliminar prestamo: " + e.getMessage());
-        return false;
-    }
-}
-
-public List<Prestamo> buscarPrestamosActivos(String cedulaCliente) {
-    List<Prestamo> lista = new ArrayList<>();
-    String sql = "SELECT id_prestamos, cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula "
-               + "FROM prestamos WHERE cliente_cedula = ? AND estado = 'Activo'";
-
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setInt(1, Integer.parseInt(cedulaCliente));
-
-        try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Prestamo p = new Prestamo(
                         rs.getInt("id_prestamos"),
                         rs.getInt("cliente_cedula"),
                         rs.getString("libro_isbn"),
-                        rs.getDate("fecha_prestamo").toLocalDate(),
+                        rs.getDate("fecha_prestamo").toLocalDate(), // sql.Date -> LocalDate
                         rs.getDate("fecha_devolucion").toLocalDate(),
                         rs.getString("estado"),
                         rs.getInt("usuarios_administradores_cedula")
                 );
                 lista.add(p);
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error al leer prestamos: " + e.getMessage());
         }
-    } catch (SQLException e) {
-        System.out.println("Error al buscar prestamos activos: " + e.getMessage());
+        return lista;
     }
-    return lista;
-    
-    
-}
 
-public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
-        String libroIsbn, LocalDate fechaDevolucionReal, LocalDate fechaLimite, String cedulaAdmin) {
+    public boolean actualizarPrestamo(String idPrestamo, String cedulaCliente, String libroIsbn,
+            String estado, LocalDate fechaPrestamo, LocalDate fechaDevolucion, String cedulaAdmin) {
 
-    try {
-        // 1. Actualizar estado del prestamo a Devuelto
-        String sqlPrestamo = "UPDATE prestamos SET estado = 'Devuelto', fecha_devolucion = ? WHERE id_prestamos = ?";
-        PreparedStatement ps1 = conexion.prepareStatement(sqlPrestamo);
-        ps1.setDate(1, java.sql.Date.valueOf(fechaDevolucionReal));
-        ps1.setInt(2, Integer.parseInt(idPrestamo));
-        ps1.executeUpdate();
+        try {
+            String orden = "UPDATE prestamos SET cliente_cedula = ?, libro_isbn = ?, estado = ?, "
+                    + "fecha_prestamo = ?, fecha_devolucion = ?, usuarios_administradores_cedula = ? WHERE id_prestamos = ?";
+            PreparedStatement ps = conexion.prepareStatement(orden);
 
-        // 2. Calcular dias de retraso
-        long diasRetraso = java.time.temporal.ChronoUnit.DAYS.between(fechaLimite, fechaDevolucionReal);
+            ps.setInt(1, Integer.parseInt(cedulaCliente));
+            ps.setString(2, libroIsbn);
+            ps.setString(3, estado);
+            ps.setDate(4, java.sql.Date.valueOf(fechaPrestamo));      // LocalDate -> sql.Date
+            ps.setDate(5, java.sql.Date.valueOf(fechaDevolucion));
+            ps.setInt(6, Integer.parseInt(cedulaAdmin));
+            ps.setInt(7, Integer.parseInt(idPrestamo));
+            ps.executeUpdate();
 
-        // 3. Si hay retraso generar multa automaticamente
-        if (diasRetraso > 0) {
-            double tarifaPorDia = 0.50; // $0.50 por dia de retraso
-            java.math.BigDecimal monto = java.math.BigDecimal.valueOf(diasRetraso * tarifaPorDia);
-
-            String sqlMulta = "INSERT INTO multas (cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion) "
-                            + "VALUES (?, ?, ?, 'Pendiente', ?)";
-            PreparedStatement ps2 = conexion.prepareStatement(sqlMulta);
-            ps2.setInt(1, Integer.parseInt(cedulaCliente));
-            ps2.setInt(2, Integer.parseInt(idPrestamo));
-            ps2.setBigDecimal(3, monto);
-            ps2.setDate(4, java.sql.Date.valueOf(fechaDevolucionReal));
-            ps2.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar prestamo");
+            return false;
         }
-
-        return true;
-    } catch (SQLException e) {
-        System.out.println("Error al registrar devolucion: " + e.getMessage());
-        return false;
     }
-}
+
+    public boolean eliminarPrestamo(String idPrestamo) {
+        String orden = "DELETE FROM prestamos WHERE id_prestamos = ?";
+
+        try (PreparedStatement ps = conexion.prepareStatement(orden)) {
+            ps.setInt(1, Integer.parseInt(idPrestamo));
+
+            int filasEliminadas = ps.executeUpdate();
+            return filasEliminadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar prestamo: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public List<Prestamo> buscarPrestamosActivos(String cedulaCliente) {
+        List<Prestamo> lista = new ArrayList<>();
+        String sql = "SELECT id_prestamos, cliente_cedula, libro_isbn, estado, fecha_prestamo, fecha_devolucion, usuarios_administradores_cedula "
+                + "FROM prestamos WHERE cliente_cedula = ? AND estado = 'Activo'";
+
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(cedulaCliente));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Prestamo p = new Prestamo(
+                            rs.getInt("id_prestamos"),
+                            rs.getInt("cliente_cedula"),
+                            rs.getString("libro_isbn"),
+                            rs.getDate("fecha_prestamo").toLocalDate(),
+                            rs.getDate("fecha_devolucion").toLocalDate(),
+                            rs.getString("estado"),
+                            rs.getInt("usuarios_administradores_cedula")
+                    );
+                    lista.add(p);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar prestamos activos: " + e.getMessage());
+        }
+        return lista;
+
+    }
+
+    public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
+            String libroIsbn, LocalDate fechaDevolucionReal, LocalDate fechaLimite, String cedulaAdmin) {
+
+        try {
+            // 1. Actualizar estado del prestamo a Devuelto
+            String sqlPrestamo = "UPDATE prestamos SET estado = 'Devuelto', fecha_devolucion = ? WHERE id_prestamos = ?";
+            PreparedStatement ps1 = conexion.prepareStatement(sqlPrestamo);
+            ps1.setDate(1, java.sql.Date.valueOf(fechaDevolucionReal));
+            ps1.setInt(2, Integer.parseInt(idPrestamo));
+            ps1.executeUpdate();
+
+            // 2. Calcular dias de retraso
+            long diasRetraso = java.time.temporal.ChronoUnit.DAYS.between(fechaLimite, fechaDevolucionReal);
+
+            // 3. Si hay retraso generar multa automaticamente
+            if (diasRetraso > 0) {
+                double tarifaPorDia = 0.50; // $0.50 por dia de retraso
+                java.math.BigDecimal monto = java.math.BigDecimal.valueOf(diasRetraso * tarifaPorDia);
+
+                String sqlMulta = "INSERT INTO multas (cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion) "
+                        + "VALUES (?, ?, ?, 'Pendiente', ?)";
+                PreparedStatement ps2 = conexion.prepareStatement(sqlMulta);
+                ps2.setInt(1, Integer.parseInt(cedulaCliente));
+                ps2.setInt(2, Integer.parseInt(idPrestamo));
+                ps2.setBigDecimal(3, monto);
+                ps2.setDate(4, java.sql.Date.valueOf(fechaDevolucionReal));
+                ps2.executeUpdate();
+            }
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error al registrar devolucion: " + e.getMessage());
+            return false;
+        }
+    }
 
 //DE AQUI PARA ACA SOLO MULTAS -------------------------------------------------------------------------
     public boolean registrarMulta(String cedulaCliente, String idPrestamo,
@@ -614,8 +678,7 @@ public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
         List<Multa> lista = new ArrayList<>();
         String sql = "SELECT id_multa, cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion FROM multas";
 
-        try (PreparedStatement ps = conexion.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Multa m = new Multa(
@@ -729,9 +792,10 @@ public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
 
     public java.math.BigDecimal obtenerTotalMultas() {
         String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas";
-        try (PreparedStatement ps = conexion.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) return rs.getBigDecimal(1);
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getBigDecimal(1);
+            }
         } catch (SQLException e) {
             System.out.println("Error al obtener total multas: " + e.getMessage());
         }
@@ -740,9 +804,10 @@ public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
 
     public java.math.BigDecimal obtenerTotalMultasPendientes() {
         String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas WHERE estado = 'Pendiente'";
-        try (PreparedStatement ps = conexion.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) return rs.getBigDecimal(1);
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getBigDecimal(1);
+            }
         } catch (SQLException e) {
             System.out.println("Error al obtener multas pendientes: " + e.getMessage());
         }
@@ -751,9 +816,10 @@ public boolean registrarDevolucion(String idPrestamo, String cedulaCliente,
 
     public java.math.BigDecimal obtenerTotalMultasPagadas() {
         String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas WHERE estado = 'Pagado'";
-        try (PreparedStatement ps = conexion.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) return rs.getBigDecimal(1);
+        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getBigDecimal(1);
+            }
         } catch (SQLException e) {
             System.out.println("Error al obtener multas pagadas: " + e.getMessage());
         }
