@@ -34,16 +34,14 @@ public class gestionMultas extends javax.swing.JFrame {
             actualizarTotales();
         });
         timer.start();
-        
-        this.activo = activo; 
 
+        this.activo = activo;
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -178,7 +176,7 @@ public class gestionMultas extends javax.swing.JFrame {
                             .addComponent(criterioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscarClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(registrarCliente))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -191,48 +189,6 @@ public class gestionMultas extends javax.swing.JFrame {
         jPanel11.setPreferredSize(new java.awt.Dimension(248, 268));
 
         tablaMultas.setModel(new javax.swing.table.DefaultTableModel(
-=======
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnVolver = new javax.swing.JButton();
-        lbl1 = new javax.swing.JLabel();
-        btnBuscarLibro1 = new javax.swing.JButton();
-        btnBuscarLibro = new javax.swing.JButton();
-        pnlFooter = new javax.swing.JPanel();
-        lblFooter = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        cardBusqueda1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        pnlHeader = new javax.swing.JPanel();
-        lblTitulo1 = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
-        cardBusqueda3 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        cardBusqueda2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        cardBusqueda4 = new javax.swing.JPanel();
-        criterioBusquedaLibro6 = new javax.swing.JTextField();
-        criterioBusquedaLibro8 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        btnBuscarLibro3 = new javax.swing.JButton();
-        btnBuscarLibro4 = new javax.swing.JButton();
-        cardBusqueda5 = new javax.swing.JPanel();
-        criterioBusquedaLibro7 = new javax.swing.JTextField();
-        criterioBusquedaLibro9 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        criterioBusquedaLibro10 = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -240,7 +196,6 @@ public class gestionMultas extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-<<<<<<< HEAD
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
@@ -340,7 +295,7 @@ public class gestionMultas extends javax.swing.JFrame {
                                 .addComponent(estadoMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(motivoMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(fechaPagoMulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(motivoMultaEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -536,17 +491,18 @@ public class gestionMultas extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 998, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(193, 193, 193)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(162, 162, 162))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(193, 193, 193)
+                                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(53, 53, 53)
+                                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(43, 43, 43)))
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(registrarPago1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -608,391 +564,23 @@ public class gestionMultas extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanel7);
 
-=======
-                "Titulo", "Age", "NickName", "Employee"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnVolver.setText("Volver ");
-        btnVolver.setBorder(null);
-        btnVolver.setBorderPainted(false);
-        btnVolver.setFocusPainted(false);
-        btnVolver.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVolver.setPreferredSize(new java.awt.Dimension(150, 30));
-        btnVolver.addActionListener(this::btnVolverActionPerformed);
-
-        lbl1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl1.setText("Gestionar Multas");
-        lbl1.setToolTipText("");
-        lbl1.setAlignmentX(0.5F);
-        lbl1.setAlignmentY(0.0F);
-        lbl1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        btnBuscarLibro1.setText("Registrar Pago");
-        btnBuscarLibro1.addActionListener(this::btnBuscarLibro1ActionPerformed);
-
-        btnBuscarLibro.setText("Cancelar");
-        btnBuscarLibro.addActionListener(this::btnBuscarLibroActionPerformed);
-
-        pnlFooter.setBackground(new java.awt.Color(51, 51, 51));
-        pnlFooter.setPreferredSize(new java.awt.Dimension(894, 54));
-        pnlFooter.setLayout(new java.awt.BorderLayout());
-
-        lblFooter.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lblFooter.setForeground(java.awt.Color.white);
-        lblFooter.setText("Sistema de Gestión Bibliotecaria");
-        lblFooter.setAlignmentY(0.0F);
-        lblFooter.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 40, 1, 1));
-        lblFooter.setFocusable(false);
-        lblFooter.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        pnlFooter.add(lblFooter, java.awt.BorderLayout.WEST);
-
-        jLabel7.setText("Consulta y Registra Pagos de Multas");
-
-        cardBusqueda1.setBackground(java.awt.Color.white);
-        cardBusqueda1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cardBusqueda1.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        jLabel9.setText("Total de Multas Pendientes");
-
-        javax.swing.GroupLayout cardBusqueda1Layout = new javax.swing.GroupLayout(cardBusqueda1);
-        cardBusqueda1.setLayout(cardBusqueda1Layout);
-        cardBusqueda1Layout.setHorizontalGroup(
-            cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-        cardBusqueda1Layout.setVerticalGroup(
-            cardBusqueda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        pnlHeader.setBackground(new java.awt.Color(51, 51, 51));
-        pnlHeader.setPreferredSize(new java.awt.Dimension(894, 54));
-        pnlHeader.setLayout(new java.awt.BorderLayout());
-
-        lblTitulo1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo1.setText("BiblioSmart");
-        lblTitulo1.setAlignmentY(0.0F);
-        lblTitulo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 75, 1, 1));
-        lblTitulo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblTitulo1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlHeader.add(lblTitulo1, java.awt.BorderLayout.LINE_START);
-
-        lblUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setText("¡Bienvenido, Admin!");
-        lblUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 75));
-        pnlHeader.add(lblUsuario, java.awt.BorderLayout.LINE_END);
-
-        cardBusqueda3.setBackground(java.awt.Color.white);
-        cardBusqueda3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cardBusqueda3.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        jLabel12.setText("Total Multas");
-
-        javax.swing.GroupLayout cardBusqueda3Layout = new javax.swing.GroupLayout(cardBusqueda3);
-        cardBusqueda3.setLayout(cardBusqueda3Layout);
-        cardBusqueda3Layout.setHorizontalGroup(
-            cardBusqueda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda3Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        cardBusqueda3Layout.setVerticalGroup(
-            cardBusqueda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        cardBusqueda2.setBackground(java.awt.Color.white);
-        cardBusqueda2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cardBusqueda2.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        jLabel11.setText("Total de Multas Pagadas");
-
-        javax.swing.GroupLayout cardBusqueda2Layout = new javax.swing.GroupLayout(cardBusqueda2);
-        cardBusqueda2.setLayout(cardBusqueda2Layout);
-        cardBusqueda2Layout.setHorizontalGroup(
-            cardBusqueda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda2Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cardBusqueda2Layout.setVerticalGroup(
-            cardBusqueda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-
-        cardBusqueda4.setBackground(java.awt.Color.white);
-        cardBusqueda4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cardBusqueda4.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        criterioBusquedaLibro6.addActionListener(this::criterioBusquedaLibro6ActionPerformed);
-
-        criterioBusquedaLibro8.addActionListener(this::criterioBusquedaLibro8ActionPerformed);
-
-        jLabel8.setText("Buscar por Nombre");
-
-        jLabel10.setText("Buscar por Cedula");
-
-        btnBuscarLibro3.setText("Buscar");
-        btnBuscarLibro3.addActionListener(this::btnBuscarLibro3ActionPerformed);
-
-        btnBuscarLibro4.setText("Buscar");
-        btnBuscarLibro4.addActionListener(this::btnBuscarLibro4ActionPerformed);
-
-        javax.swing.GroupLayout cardBusqueda4Layout = new javax.swing.GroupLayout(cardBusqueda4);
-        cardBusqueda4.setLayout(cardBusqueda4Layout);
-        cardBusqueda4Layout.setHorizontalGroup(
-            cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda4Layout.createSequentialGroup()
-                .addGroup(cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardBusqueda4Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(criterioBusquedaLibro6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(btnBuscarLibro3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardBusqueda4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(cardBusqueda4Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(criterioBusquedaLibro8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscarLibro4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
-        );
-        cardBusqueda4Layout.setVerticalGroup(
-            cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(cardBusqueda4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(criterioBusquedaLibro6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarLibro3)
-                    .addComponent(criterioBusquedaLibro8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarLibro4))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        cardBusqueda5.setBackground(java.awt.Color.white);
-        cardBusqueda5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cardBusqueda5.setPreferredSize(new java.awt.Dimension(500, 100));
-
-        criterioBusquedaLibro7.addActionListener(this::criterioBusquedaLibro7ActionPerformed);
-
-        criterioBusquedaLibro9.addActionListener(this::criterioBusquedaLibro9ActionPerformed);
-
-        jLabel13.setText("Motivo de la Multa");
-
-        jLabel14.setText("Valor de la Multa");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel15.setText("Estado");
-
-        jLabel16.setText("Fecha de Pago");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        criterioBusquedaLibro10.addActionListener(this::criterioBusquedaLibro10ActionPerformed);
-
-        javax.swing.GroupLayout cardBusqueda5Layout = new javax.swing.GroupLayout(cardBusqueda5);
-        cardBusqueda5.setLayout(cardBusqueda5Layout);
-        cardBusqueda5Layout.setHorizontalGroup(
-            cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda5Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(criterioBusquedaLibro7, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cardBusqueda5Layout.createSequentialGroup()
-                        .addComponent(criterioBusquedaLibro9, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(cardBusqueda5Layout.createSequentialGroup()
-                        .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, 115, Short.MAX_VALUE))
-                        .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(cardBusqueda5Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cardBusqueda5Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(criterioBusquedaLibro10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
-        );
-        cardBusqueda5Layout.setVerticalGroup(
-            cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardBusqueda5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(cardBusqueda5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(criterioBusquedaLibro7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(criterioBusquedaLibro10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(criterioBusquedaLibro9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(btnBuscarLibro1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(cardBusqueda4, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cardBusqueda1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(107, 107, 107)
-                                        .addComponent(cardBusqueda2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lbl1)))
-                        .addGap(54, 54, 54)
-                        .addComponent(cardBusqueda3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(cardBusqueda5, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cardBusqueda2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardBusqueda1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardBusqueda3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cardBusqueda4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cardBusqueda5, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscarLibro1)
-                    .addComponent(btnBuscarLibro))
-                .addGap(19, 19, 19)
-                .addComponent(pnlFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1079, Short.MAX_VALUE)
-=======
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1047, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 12, Short.MAX_VALUE))
-=======
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     public void cargarTablaMultas() {
         mostrarResultadosMultas(conexion.leerDatosMultas());
     }
@@ -1013,7 +601,7 @@ public class gestionMultas extends javax.swing.JFrame {
         tablaMultas.setModel(modelo);
     }
 
-// Al seleccionar una fila llena los campos
+    // Al seleccionar una fila llena los campos
     private void mostrarFilaSeleccionadaMulta() {
         int filaSeleccionada = tablaMultas.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -1044,13 +632,12 @@ public class gestionMultas extends javax.swing.JFrame {
     }//GEN-LAST:event_criterioBusquedaActionPerformed
 
     private void registrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarClienteActionPerformed
-
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_registrarClienteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-new FrmGestionPrestamos(activo).setVisible(true); 
-            this.dispose();        // TODO add your handling code here:
+        new FrmGestionPrestamos(activo).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void estadoMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoMultaActionPerformed
@@ -1107,56 +694,12 @@ new FrmGestionPrestamos(activo).setVisible(true);
             cargarTablaMultas();
             actualizarTotales();
             limpiarCamposMulta();
-            new FrmGestionPrestamos(activo).setVisible(true); 
+            new FrmGestionPrestamos(activo).setVisible(true);
             this.dispose();
-
         } else {
             JOptionPane.showMessageDialog(this, "Error al registrar pago");
         }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_registrarPago1ActionPerformed
-=======
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
-
-    private void btnBuscarLibro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarLibro1ActionPerformed
-
-    private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarLibroActionPerformed
-
-    private void criterioBusquedaLibro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioBusquedaLibro6ActionPerformed
-
-    private void criterioBusquedaLibro8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioBusquedaLibro8ActionPerformed
-
-    private void btnBuscarLibro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarLibro3ActionPerformed
-
-    private void btnBuscarLibro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibro4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarLibro4ActionPerformed
-
-    private void criterioBusquedaLibro7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioBusquedaLibro7ActionPerformed
-
-    private void criterioBusquedaLibro9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioBusquedaLibro9ActionPerformed
-
-    private void criterioBusquedaLibro10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaLibro10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioBusquedaLibro10ActionPerformed
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
 
     /**
      * @param args the command line arguments
@@ -1165,7 +708,7 @@ new FrmGestionPrestamos(activo).setVisible(true);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1180,35 +723,16 @@ new FrmGestionPrestamos(activo).setVisible(true);
         //</editor-fold>
 
         /* Create and display the form */
- UsuarioAdministrador prueba = new UsuarioAdministrador("admin", "admin123", "ad123", "1005370158", "admin@gmail.com");
-        java.awt.EventQueue.invokeLater(() -> new gestionMultas(prueba).setVisible(true));    }
+        UsuarioAdministrador prueba = new UsuarioAdministrador("admin", "admin123", "ad123", "1005370158", "admin@gmail.com");
+        java.awt.EventQueue.invokeLater(() -> new gestionMultas(prueba).setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
     private javax.swing.JTextField buscarClienteEditar;
     private javax.swing.JComboBox<String> criterioBusqueda;
     private javax.swing.JComboBox<String> estadoMulta;
     private com.toedter.calendar.JDateChooser fechaPagoMulta;
     private javax.swing.JButton jButton2;
-=======
-    private javax.swing.JButton btnBuscarLibro;
-    private javax.swing.JButton btnBuscarLibro1;
-    private javax.swing.JButton btnBuscarLibro3;
-    private javax.swing.JButton btnBuscarLibro4;
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JPanel cardBusqueda1;
-    private javax.swing.JPanel cardBusqueda2;
-    private javax.swing.JPanel cardBusqueda3;
-    private javax.swing.JPanel cardBusqueda4;
-    private javax.swing.JPanel cardBusqueda5;
-    private javax.swing.JTextField criterioBusquedaLibro10;
-    private javax.swing.JTextField criterioBusquedaLibro6;
-    private javax.swing.JTextField criterioBusquedaLibro7;
-    private javax.swing.JTextField criterioBusquedaLibro8;
-    private javax.swing.JTextField criterioBusquedaLibro9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1216,41 +740,25 @@ new FrmGestionPrestamos(activo).setVisible(true);
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-<<<<<<< HEAD
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-=======
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-<<<<<<< HEAD
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelBienvenida;
-    private javax.swing.JLabel labelBienvenida1;
-    private javax.swing.JLabel labelBienvenida2;
     private javax.swing.JLabel labelBienvenida3;
     private javax.swing.JLabel labelTotalMultas;
     private javax.swing.JLabel labelTotalPagadas;
@@ -1262,15 +770,5 @@ new FrmGestionPrestamos(activo).setVisible(true);
     private javax.swing.JButton registrarPago1;
     private javax.swing.JTable tablaMultas;
     private javax.swing.JTextField valorMulta;
-=======
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lbl1;
-    private javax.swing.JLabel lblFooter;
-    private javax.swing.JLabel lblTitulo1;
-    private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel pnlFooter;
-    private javax.swing.JPanel pnlHeader;
->>>>>>> ee905bc1512b6672ec46b4832a07b25ed216420c
     // End of variables declaration//GEN-END:variables
 }
