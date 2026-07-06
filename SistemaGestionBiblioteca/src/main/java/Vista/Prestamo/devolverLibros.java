@@ -32,6 +32,8 @@ public class devolverLibros extends javax.swing.JFrame {
             fechaDevolucionPropertyChange(evt);
         });
    this.activo = usuarioActivo; 
+           labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     /**
@@ -44,7 +46,7 @@ public class devolverLibros extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        labelBienvenida3 = new javax.swing.JLabel();
+        labelBienvenida = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         devolucionBusqueda = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -78,9 +80,9 @@ public class devolverLibros extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("BiblioSmart");
 
-        labelBienvenida3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelBienvenida3.setForeground(new java.awt.Color(255, 255, 255));
-        labelBienvenida3.setText("¡Bienvenido, admin!");
+        labelBienvenida.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        labelBienvenida.setText("¡Bienvenido, admin!");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -90,7 +92,7 @@ public class devolverLibros extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelBienvenida3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +100,7 @@ public class devolverLibros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(labelBienvenida3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -106,7 +108,7 @@ public class devolverLibros extends javax.swing.JFrame {
         jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         jPanel9.setPreferredSize(new java.awt.Dimension(248, 268));
 
-        devolucionBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        devolucionBusqueda.setBackground(new java.awt.Color(51, 51, 51));
         devolucionBusqueda.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         devolucionBusqueda.setForeground(new java.awt.Color(255, 255, 255));
         devolucionBusqueda.setText("Buscar");
@@ -140,7 +142,7 @@ public class devolverLibros extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(devolucionBusqueda)
                     .addComponent(devolucionLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -215,7 +217,7 @@ public class devolverLibros extends javax.swing.JFrame {
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fechaDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 33, Short.MAX_VALUE))
+                        .addGap(12, 32, Short.MAX_VALUE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -576,7 +578,7 @@ new FrmGestionPrestamos(activo).setVisible(true);
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelBienvenida3;
+    private javax.swing.JLabel labelBienvenida;
     private javax.swing.JTextField multaGenerada;
     private javax.swing.JButton registrarPago;
     private javax.swing.JButton registroDevolucion;

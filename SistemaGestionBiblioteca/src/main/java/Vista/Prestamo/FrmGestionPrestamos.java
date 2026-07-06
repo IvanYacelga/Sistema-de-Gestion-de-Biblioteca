@@ -19,6 +19,8 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
     public FrmGestionPrestamos(UsuarioAdministrador activo) {
         initComponents();
         this.activo = activo; 
+                labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
         
         
     }
@@ -59,7 +61,6 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.white);
-        setPreferredSize(new java.awt.Dimension(910, 550));
 
         jPanel4.setBackground(java.awt.Color.white);
         jPanel4.setPreferredSize(new java.awt.Dimension(910, 550));
@@ -94,6 +95,7 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        btnVolverMenuPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         btnVolverMenuPrincipal.setText("Volver al Menu Principal");
         btnVolverMenuPrincipal.addActionListener(this::btnVolverMenuPrincipalActionPerformed);
 
@@ -324,9 +326,9 @@ public class FrmGestionPrestamos extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnVolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)

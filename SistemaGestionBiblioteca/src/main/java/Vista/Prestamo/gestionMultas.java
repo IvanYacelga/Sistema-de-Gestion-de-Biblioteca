@@ -24,7 +24,16 @@ public class gestionMultas extends javax.swing.JFrame {
     UsuarioAdministrador activo;
 
     public gestionMultas(UsuarioAdministrador activo) {
+
         initComponents();
+        jScrollPane1.setViewportView(tablaMultas);
+
+        tablaMultas.getSelectionModel().addListSelectionListener(evt -> {
+            if (!evt.getValueIsAdjusting()) {
+                mostrarFilaSeleccionadaMulta();
+            }
+        });
+
         this.conexion = ConexionPostgresql.getInstancia();
         cargarTablaMultas();
         actualizarTotales();
@@ -36,6 +45,8 @@ public class gestionMultas extends javax.swing.JFrame {
         timer.start();
 
         this.activo = activo;
+                labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +57,7 @@ public class gestionMultas extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        labelBienvenida3 = new javax.swing.JLabel();
+        labelBienvenida = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         criterioBusqueda = new javax.swing.JComboBox<>();
@@ -95,9 +106,9 @@ public class gestionMultas extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("BiblioSmart");
 
-        labelBienvenida3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labelBienvenida3.setForeground(new java.awt.Color(255, 255, 255));
-        labelBienvenida3.setText("¡Bienvenido, admin!");
+        labelBienvenida.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        labelBienvenida.setText("¡Bienvenido, admin!");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -107,7 +118,7 @@ public class gestionMultas extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelBienvenida3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +126,7 @@ public class gestionMultas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(labelBienvenida3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -136,7 +147,7 @@ public class gestionMultas extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Buscar por:");
 
-        registrarCliente.setBackground(new java.awt.Color(255, 255, 255));
+        registrarCliente.setBackground(new java.awt.Color(51, 51, 51));
         registrarCliente.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarCliente.setForeground(new java.awt.Color(255, 255, 255));
         registrarCliente.setText("Buscar");
@@ -179,6 +190,7 @@ public class gestionMultas extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Volver");
@@ -348,10 +360,10 @@ public class gestionMultas extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(labelTotalPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addComponent(labelTotalPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
@@ -388,14 +400,12 @@ public class gestionMultas extends javax.swing.JFrame {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(labelTotalPagadas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTotalPagadas, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,13 +434,14 @@ public class gestionMultas extends javax.swing.JFrame {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(labelTotalMultas, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addComponent(labelTotalMultas, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,14 +453,14 @@ public class gestionMultas extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        registrarPago.setBackground(new java.awt.Color(255, 255, 255));
+        registrarPago.setBackground(new java.awt.Color(51, 51, 51));
         registrarPago.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarPago.setForeground(new java.awt.Color(255, 255, 255));
         registrarPago.setText("Cancelar");
         registrarPago.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         registrarPago.addActionListener(this::registrarPagoActionPerformed);
 
-        registrarPago1.setBackground(new java.awt.Color(255, 255, 255));
+        registrarPago1.setBackground(new java.awt.Color(51, 51, 51));
         registrarPago1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarPago1.setForeground(new java.awt.Color(255, 255, 255));
         registrarPago1.setText("Registrar Pago");
@@ -580,9 +591,22 @@ public class gestionMultas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void actualizarTotales() {
+        labelTotalPendientes.setText("$" + conexion.obtenerTotalMultasPendientes());
+        labelTotalPagadas.setText("$" + conexion.obtenerTotalMultasPagadas());
+        labelTotalMultas.setText("$" + conexion.obtenerTotalMultas());
+    }
+
+    private void limpiarCamposMulta() {
+        valorMulta.setText("");
+        motivoMultaEspecifico.setText("");
+        motivoMulta.setSelectedIndex(0);
+        estadoMulta.setSelectedIndex(0);
+        fechaPagoMulta.setDate(null);
+    }
 
     public void cargarTablaMultas() {
-        mostrarResultadosMultas(conexion.leerDatosMultas());
+        mostrarResultadosMultas(conexion.leerDatosMultasPendientes());
     }
 
     public void mostrarResultadosMultas(List<Multa> lista) {
@@ -607,24 +631,7 @@ public class gestionMultas extends javax.swing.JFrame {
         if (filaSeleccionada == -1) {
             return;
         }
-        DefaultTableModel modelo = (DefaultTableModel) tablaMultas.getModel();
-
-        valorMulta.setText(String.valueOf(modelo.getValueAt(filaSeleccionada, 3)));
-        estadoMulta.setSelectedItem(String.valueOf(modelo.getValueAt(filaSeleccionada, 4)));
-    }
-
-    private void actualizarTotales() {
-        labelTotalPendientes.setText("$" + conexion.obtenerTotalMultasPendientes());
-        labelTotalPagadas.setText("$" + conexion.obtenerTotalMultasPagadas());
-        labelTotalMultas.setText("$" + conexion.obtenerTotalMultas());
-    }
-
-    private void limpiarCamposMulta() {
-        valorMulta.setText("");
-        motivoMultaEspecifico.setText("");
-        motivoMulta.setSelectedIndex(0);
-        estadoMulta.setSelectedIndex(0);
-        fechaPagoMulta.setDate(null);
+        valorMulta.setText(""); // el admin escribe cuánto quiere abonar, no se precarga
     }
 
     private void criterioBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioBusquedaActionPerformed
@@ -632,7 +639,21 @@ public class gestionMultas extends javax.swing.JFrame {
     }//GEN-LAST:event_criterioBusquedaActionPerformed
 
     private void registrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarClienteActionPerformed
-        // TODO add your handling code here:
+ 
+          String cedula = buscarClienteEditar.getText().trim();
+
+    if (cedula.isEmpty()) {
+        cargarTablaMultas();
+        return;
+    }
+
+    List<Multa> resultado = conexion.buscarMultasPendientesPorCedula(cedula);
+
+    if (resultado.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No se encontraron multas pendientes para esa cédula");
+    }
+
+    mostrarResultadosMultas(resultado);
     }//GEN-LAST:event_registrarClienteActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -653,6 +674,7 @@ public class gestionMultas extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarPagoActionPerformed
 
     private void registrarPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPago1ActionPerformed
+
         int filaSeleccionada = tablaMultas.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione una multa de la tabla");
@@ -661,44 +683,25 @@ public class gestionMultas extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) tablaMultas.getModel();
         String idMulta = String.valueOf(modelo.getValueAt(filaSeleccionada, 0));
-        String cedula = String.valueOf(modelo.getValueAt(filaSeleccionada, 1));
-        String idPrestamo = String.valueOf(modelo.getValueAt(filaSeleccionada, 2));
-        String monto = valorMulta.getText().trim();
-        String estado = (String) estadoMulta.getSelectedItem();
-
-        // Validar fecha de pago
-        if (fechaPagoMulta.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Seleccione la fecha de pago");
-            return;
-        }
-        LocalDate fechaPago = fechaPagoMulta.getDate().toInstant()
-                .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+        String montoPago = valorMulta.getText().trim();
 
         // Validar monto
-        if (monto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el valor de la multa");
+        if (montoPago.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el monto a pagar");
             return;
         }
 
-        boolean resultado = conexion.actualizarMulta(
-                idMulta,
-                cedula,
-                idPrestamo,
-                monto,
-                estado,
-                fechaPago
-        );
+        boolean resultado = conexion.registrarPagoMulta(idMulta, montoPago);
 
         if (resultado) {
             JOptionPane.showMessageDialog(this, "Pago registrado correctamente");
             cargarTablaMultas();
             actualizarTotales();
             limpiarCamposMulta();
-            new FrmGestionPrestamos(activo).setVisible(true);
-            this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Error al registrar pago");
+            JOptionPane.showMessageDialog(this, "Error al registrar pago. Verifique que el monto sea válido y no exceda el saldo pendiente");
         }
+
     }//GEN-LAST:event_registrarPago1ActionPerformed
 
     /**
@@ -759,7 +762,7 @@ public class gestionMultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelBienvenida3;
+    private javax.swing.JLabel labelBienvenida;
     private javax.swing.JLabel labelTotalMultas;
     private javax.swing.JLabel labelTotalPagadas;
     private javax.swing.JLabel labelTotalPendientes;

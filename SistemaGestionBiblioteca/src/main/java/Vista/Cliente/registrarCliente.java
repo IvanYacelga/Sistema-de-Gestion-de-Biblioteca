@@ -24,6 +24,8 @@ public class registrarCliente extends javax.swing.JFrame {
         initComponents();
         this.conexion = ConexionPostgresql.getInstancia();
         this.activo = activo; 
+                labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     /**

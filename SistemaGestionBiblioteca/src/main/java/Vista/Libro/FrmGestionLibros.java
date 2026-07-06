@@ -25,6 +25,8 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
         this.activo = activo; 
+        labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     /**
@@ -39,6 +41,7 @@ public class FrmGestionLibros extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
+        labelBienvenida = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
         panelRegresar = new javax.swing.JPanel();
         btnRegresarMenuPrincipal = new javax.swing.JButton();
@@ -99,9 +102,13 @@ public class FrmGestionLibros extends javax.swing.JFrame {
 
         lblUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsuario.setText("¡Bienvenido, Admin!");
         lblUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 75));
         panelHeader.add(lblUsuario, java.awt.BorderLayout.LINE_END);
+
+        labelBienvenida.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelBienvenida.setForeground(new java.awt.Color(255, 255, 255));
+        labelBienvenida.setText("¡Bienvenido, admin!");
+        panelHeader.add(labelBienvenida, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelHeader, java.awt.BorderLayout.NORTH);
 
@@ -509,6 +516,7 @@ public class FrmGestionLibros extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
+    private javax.swing.JLabel labelBienvenida;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblEliminar;
     private javax.swing.JLabel lblEliminar1;

@@ -30,6 +30,9 @@ public class editarCliente extends javax.swing.JFrame {
         editarTablaBase.getSelectionModel().addListSelectionListener(evt -> {
         mostrarFilaSeleccionada();
                     });
+        this.activo = activo; 
+                labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     @SuppressWarnings("unchecked")
@@ -163,7 +166,7 @@ public class editarCliente extends javax.swing.JFrame {
                             .addComponent(criterioBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buscarClienteEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(registrarCliente))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -260,21 +263,21 @@ public class editarCliente extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setText("Telefono:");
 
-        registrarCliente1.setBackground(new java.awt.Color(255, 255, 255));
+        registrarCliente1.setBackground(new java.awt.Color(51, 51, 51));
         registrarCliente1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarCliente1.setForeground(new java.awt.Color(255, 255, 255));
         registrarCliente1.setText("Actualizar Datos");
         registrarCliente1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         registrarCliente1.addActionListener(this::registrarCliente1ActionPerformed);
 
-        registrarCliente2.setBackground(new java.awt.Color(255, 255, 255));
+        registrarCliente2.setBackground(new java.awt.Color(51, 51, 51));
         registrarCliente2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarCliente2.setForeground(new java.awt.Color(255, 255, 255));
         registrarCliente2.setText("Limpiar");
         registrarCliente2.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         registrarCliente2.addActionListener(this::registrarCliente2ActionPerformed);
 
-        registrarCliente3.setBackground(new java.awt.Color(255, 255, 255));
+        registrarCliente3.setBackground(new java.awt.Color(51, 51, 51));
         registrarCliente3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         registrarCliente3.setForeground(new java.awt.Color(255, 255, 255));
         registrarCliente3.setText("Cancelar");
@@ -326,7 +329,7 @@ public class editarCliente extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(telefonoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarCliente1)
                     .addComponent(registrarCliente2)
@@ -483,18 +486,23 @@ this.dispose();
 
     private void registrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarCliente1ActionPerformed
 
-   String nombre = nombreEditar.getText(); 
-   String cedula = cedulaEditar.getText(); 
-   String telefono = telefonoEditar.getText(); 
-   String correo = correoEditar.getText(); 
-   
-   
-  boolean exito = conexion.actualizarDatos(cedula, nombre, telefono, correo); 
-  if(exito){
-      JOptionPane.showMessageDialog(this, "Datos actualziados"); 
-  }else{
-      JOptionPane.showMessageDialog(this, "Error"); 
-  }
+ String nombre = nombreEditar.getText().trim();
+    String cedula = cedulaEditar.getText().trim();
+    String telefono = telefonoEditar.getText().trim();
+    String correo = correoEditar.getText().trim();
+
+    if (cedula.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Seleccione un cliente de la tabla primero");
+        return;
+    }
+
+    boolean exito = conexion.actualizarDatos(cedula, nombre, telefono, correo);
+    if (exito) {
+        JOptionPane.showMessageDialog(this, "Datos actualizados correctamente");
+        cargarTablaClientes(); // refresca la tabla con los datos nuevos
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al actualizar los datos");
+    }
 
     }//GEN-LAST:event_registrarCliente1ActionPerformed
 

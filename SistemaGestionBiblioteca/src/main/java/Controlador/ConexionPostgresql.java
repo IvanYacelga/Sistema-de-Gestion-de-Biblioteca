@@ -64,8 +64,7 @@ public class ConexionPostgresql {
         }
     }
 
-    public static UsuarioAdministrador confirmarCredenciales(String usuario,
-            String contrasenia) {
+    public static UsuarioAdministrador confirmarCredenciales(String usuario, String contrasenia) {
         String sql = "SELECT cedula, nombre, correo_electronico, contrasenia, usuario"
                 + " FROM usuarios_administradores"
                 + " WHERE usuario = ? AND contrasenia = ?";
@@ -75,11 +74,11 @@ public class ConexionPostgresql {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return new UsuarioAdministrador(
-                        String.valueOf(rs.getInt("cedula")),
                         rs.getString("nombre"),
-                        rs.getString("correo_electronico"),
+                        rs.getString("usuario"),
                         rs.getString("contrasenia"),
-                        rs.getString("usuario")
+                        String.valueOf(rs.getInt("cedula")),
+                        rs.getString("correo_electronico")
                 );
             }
             return null;
@@ -121,8 +120,6 @@ public class ConexionPostgresql {
             );
             lista.add(c);
         }
-
-        System.out.println("Error al leer clientes: ");
 
         return lista;
     }
@@ -181,25 +178,25 @@ public class ConexionPostgresql {
     }
 
     public boolean actualizarDatos(String cedula, String nombre, String telefono, String correo) {
+    String orden = "UPDATE cliente SET nombre = ?, telefono = ?, correo_electronico = ? WHERE cedula = ?";
 
-        try {
-            String orden = "UPDATE cliente SET nombre = ?, telefono = ?, correo_electronico=? " + "WHERE cedula  = ? ";
-            PreparedStatement ps = conexion.prepareStatement(orden);
+    try (PreparedStatement ps = conexion.prepareStatement(orden)) {
+        ps.setString(1, nombre);
+        ps.setString(2, telefono);
+        ps.setString(3, correo);
+        ps.setInt(4, Integer.parseInt(cedula));
 
-            ps.setString(1, nombre);
-            ps.setString(2, telefono);
-            ps.setString(3, correo);
-            ps.setInt(4, Integer.parseInt(cedula));
-            ps.executeUpdate();
+        int filasActualizadas = ps.executeUpdate();
+        return filasActualizadas > 0;
 
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error al actualziar");
-            return false;
-
-        }
-
+    } catch (NumberFormatException e) {
+        System.out.println("La cedula debe ser un numero");
+        return false;
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar: " + e.getMessage());
+        return false;
     }
+}
 
     public boolean eliminarCliente(String cedula) {
         String orden = "DELETE FROM cliente WHERE cedula = ?";
@@ -228,7 +225,7 @@ public class ConexionPostgresql {
             ps.setInt(2, Integer.parseInt(cedula));
 
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next(); 
+                return rs.next();
             }
 
         } catch (NumberFormatException e) {
@@ -239,55 +236,54 @@ public class ConexionPostgresql {
             return false;
         }
     }
-    
+
     public String obtenerCorreoPorCedula(String cedula) {
-    String sql = "SELECT correo_electronico FROM usuarios_administradores WHERE cedula = ?";
+        String sql = "SELECT correo_electronico FROM usuarios_administradores WHERE cedula = ?";
 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setInt(1, Integer.parseInt(cedula));
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(cedula));
 
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("correo_electronico");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("correo_electronico");
+                }
+                return null; // no se encontró el cliente
             }
-            return null; // no se encontró el cliente
+
+        } catch (NumberFormatException e) {
+            System.out.println("La cédula debe ser un número");
+            return null;
+        } catch (SQLException e) {
+            System.out.println("Error al obtener correo: " + e.getMessage());
+            return null;
         }
 
-    } catch (NumberFormatException e) {
-        System.out.println("La cédula debe ser un número");
-        return null;
-    } catch (SQLException e) {
-        System.out.println("Error al obtener correo: " + e.getMessage());
-        return null;
     }
-    
-}
-    
+
     public static String verificarYObtenerContrasenia(String correo, String cedula) {
-    String sql = "SELECT contrasenia FROM usuarios_administradores WHERE correo_electronico = ? AND cedula = ?";
+        String sql = "SELECT contrasenia FROM usuarios_administradores WHERE correo_electronico = ? AND cedula = ?";
 
-    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
-        ps.setString(1, correo);
-        ps.setInt(2, Integer.parseInt(cedula));
+        try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setString(1, correo);
+            ps.setInt(2, Integer.parseInt(cedula));
 
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("contrasenia");
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("contrasenia");
+                }
+                return null; // no encontró coincidencia
             }
-            return null; // no encontró coincidencia
+
+        } catch (NumberFormatException e) {
+            System.out.println("La cédula debe ser un número");
+            return null;
+        } catch (SQLException e) {
+            System.out.println("Error al verificar credenciales: " + e.getMessage());
+            return null;
         }
-
-    } catch (NumberFormatException e) {
-        System.out.println("La cédula debe ser un número");
-        return null;
-    } catch (SQLException e) {
-        System.out.println("Error al verificar credenciales: " + e.getMessage());
-        return null;
     }
-}
-    
-    //LIBRO FUNCIONES ----------------------------------------------------------------------------------------------
 
+    //LIBRO FUNCIONES ----------------------------------------------------------------------------------------------
     public boolean registrarLibro(String isbn, String categoria, String titulo, String autor,
             String cantidad, String editorial, String anio, String estado) {
 
@@ -525,13 +521,22 @@ public class ConexionPostgresql {
         try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
+                String estadoReal = rs.getString("estado");
+                LocalDate fechaDevolucion = rs.getDate("fecha_devolucion").toLocalDate();
+
+                // Si sigue activo y ya pasó la fecha limite, se muestra como Atrasado
+                String estadoVisual = estadoReal;
+                if ("Activo".equals(estadoReal) && fechaDevolucion.isBefore(LocalDate.now())) {
+                    estadoVisual = "Atrasado";
+                }
+
                 Prestamo p = new Prestamo(
                         rs.getInt("id_prestamos"),
                         rs.getInt("cliente_cedula"),
                         rs.getString("libro_isbn"),
-                        rs.getDate("fecha_prestamo").toLocalDate(), // sql.Date -> LocalDate
-                        rs.getDate("fecha_devolucion").toLocalDate(),
-                        rs.getString("estado"),
+                        rs.getDate("fecha_prestamo").toLocalDate(),
+                        fechaDevolucion,
+                        estadoVisual, // <- usamos el estado calculado, no el de la BD directamente
                         rs.getInt("usuarios_administradores_cedula")
                 );
                 lista.add(p);
@@ -652,15 +657,17 @@ public class ConexionPostgresql {
             String monto, String estado, LocalDate fechaGeneracion) {
 
         String sql = "INSERT INTO multas "
-                + "(cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "(cliente_cedula, prestamos_id_prestamos, monto, monto_original, estado, fecha_generacion) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+            java.math.BigDecimal montoBd = new java.math.BigDecimal(monto);
             ps.setInt(1, Integer.parseInt(cedulaCliente));
             ps.setInt(2, Integer.parseInt(idPrestamo));
-            ps.setBigDecimal(3, new java.math.BigDecimal(monto));
-            ps.setString(4, estado);
-            ps.setDate(5, java.sql.Date.valueOf(fechaGeneracion));
+            ps.setBigDecimal(3, montoBd);
+            ps.setBigDecimal(4, montoBd); // monto_original igual al monto inicial
+            ps.setString(5, estado);
+            ps.setDate(6, java.sql.Date.valueOf(fechaGeneracion));
 
             ps.executeUpdate();
             return true;
@@ -673,6 +680,58 @@ public class ConexionPostgresql {
             return false;
         }
     }
+    
+    public boolean registrarPagoMulta(String idMulta, String montoPago) {
+    String sqlSelect = "SELECT monto FROM multas WHERE id_multa = ?";
+    String sqlUpdate = "UPDATE multas SET monto = ?, estado = ? WHERE id_multa = ?";
+
+    try {
+        java.math.BigDecimal pago = new java.math.BigDecimal(montoPago);
+        java.math.BigDecimal saldoActual;
+
+        try (PreparedStatement psSelect = conexion.prepareStatement(sqlSelect)) {
+            psSelect.setInt(1, Integer.parseInt(idMulta));
+            try (ResultSet rs = psSelect.executeQuery()) {
+                if (!rs.next()) {
+                    System.out.println("Multa no encontrada");
+                    return false;
+                }
+                saldoActual = rs.getBigDecimal("monto");
+            }
+        }
+
+        if (pago.compareTo(java.math.BigDecimal.ZERO) <= 0) {
+            System.out.println("El pago debe ser mayor a cero");
+            return false;
+        }
+
+        if (pago.compareTo(saldoActual) > 0) {
+            System.out.println("El pago no puede ser mayor al saldo pendiente");
+            return false;
+        }
+
+        java.math.BigDecimal nuevoSaldo = saldoActual.subtract(pago);
+        String nuevoEstado = nuevoSaldo.compareTo(java.math.BigDecimal.ZERO) == 0 ? "Pagado" : "Pendiente";
+
+        try (PreparedStatement psUpdate = conexion.prepareStatement(sqlUpdate)) {
+            psUpdate.setBigDecimal(1, nuevoSaldo);
+            psUpdate.setString(2, nuevoEstado);
+            psUpdate.setInt(3, Integer.parseInt(idMulta));
+            psUpdate.executeUpdate();
+        }
+
+        return true;
+
+    } catch (NumberFormatException e) {
+        System.out.println("El id de multa y el monto deben ser numeros");
+        return false;
+    } catch (SQLException e) {
+        System.out.println("Error al registrar pago de multa: " + e.getMessage());
+        return false;
+    }
+}
+    
+    
 
     public List<Multa> leerDatosMultas() {
         List<Multa> lista = new ArrayList<>();
@@ -697,6 +756,57 @@ public class ConexionPostgresql {
         }
         return lista;
     }
+    public List<Multa> leerDatosMultasPendientes() {
+    List<Multa> lista = new ArrayList<>();
+    String sql = "SELECT id_multa, cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion "
+            + "FROM multas WHERE estado != 'Pagado'";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+            lista.add(new Multa(
+                    rs.getInt("id_multa"),
+                    rs.getInt("cliente_cedula"),
+                    rs.getInt("prestamos_id_prestamos"),
+                    rs.getBigDecimal("monto"),
+                    rs.getString("estado"),
+                    rs.getDate("fecha_generacion").toLocalDate()
+            ));
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al leer multas pendientes: " + e.getMessage());
+    }
+    return lista;
+}
+    
+    public List<Multa> buscarMultasPendientesPorCedula(String cedula) {
+    List<Multa> lista = new ArrayList<>();
+    String sql = "SELECT id_multa, cliente_cedula, prestamos_id_prestamos, monto, estado, fecha_generacion "
+            + "FROM multas WHERE estado != 'Pagado' AND cliente_cedula = ?";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setInt(1, Integer.parseInt(cedula));
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new Multa(
+                        rs.getInt("id_multa"),
+                        rs.getInt("cliente_cedula"),
+                        rs.getInt("prestamos_id_prestamos"),
+                        rs.getBigDecimal("monto"),
+                        rs.getString("estado"),
+                        rs.getDate("fecha_generacion").toLocalDate()
+                ));
+            }
+        }
+
+    } catch (NumberFormatException e) {
+        System.out.println("La cédula debe ser un número");
+    } catch (SQLException e) {
+        System.out.println("Error al buscar multas por cédula: " + e.getMessage());
+    }
+    return lista;
+}
+    
 
     public List<Multa> buscarMulta(String columna, String criterio) {
         List<Multa> lista = new ArrayList<>();
@@ -789,41 +899,42 @@ public class ConexionPostgresql {
             return false;
         }
     }
-
     public java.math.BigDecimal obtenerTotalMultas() {
-        String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas";
-        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getBigDecimal(1);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener total multas: " + e.getMessage());
+    String sql = "SELECT COALESCE(SUM(monto_original), 0) FROM multas";
+    try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+            return rs.getBigDecimal(1);
         }
-        return java.math.BigDecimal.ZERO;
+    } catch (SQLException e) {
+        System.out.println("Error al obtener total multas: " + e.getMessage());
     }
+    return java.math.BigDecimal.ZERO;
+}
 
-    public java.math.BigDecimal obtenerTotalMultasPendientes() {
-        String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas WHERE estado = 'Pendiente'";
-        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getBigDecimal(1);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener multas pendientes: " + e.getMessage());
+public java.math.BigDecimal obtenerTotalMultasPendientes() {
+    String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas WHERE estado = 'Pendiente'";
+    try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+            return rs.getBigDecimal(1);
         }
-        return java.math.BigDecimal.ZERO;
+    } catch (SQLException e) {
+        System.out.println("Error al obtener multas pendientes: " + e.getMessage());
     }
+    return java.math.BigDecimal.ZERO;
+}
 
-    public java.math.BigDecimal obtenerTotalMultasPagadas() {
-        String sql = "SELECT COALESCE(SUM(monto), 0) FROM multas WHERE estado = 'Pagado'";
-        try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getBigDecimal(1);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener multas pagadas: " + e.getMessage());
+public java.math.BigDecimal obtenerTotalMultasPagadas() {
+    String sql = "SELECT COALESCE(SUM(monto_original), 0) FROM multas WHERE estado = 'Pagado'";
+    try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        if (rs.next()) {
+            return rs.getBigDecimal(1);
         }
-        return java.math.BigDecimal.ZERO;
+    } catch (SQLException e) {
+        System.out.println("Error al obtener multas pagadas: " + e.getMessage());
     }
+    return java.math.BigDecimal.ZERO;
+}
+
+    
 
 }

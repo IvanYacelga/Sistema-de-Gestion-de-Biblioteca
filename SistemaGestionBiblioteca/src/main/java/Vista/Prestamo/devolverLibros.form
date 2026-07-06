@@ -152,7 +152,7 @@
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="181" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labelBienvenida3" min="-2" pref="220" max="-2" attributes="0"/>
+                      <Component id="labelBienvenida" min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -162,7 +162,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelBienvenida3" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="labelBienvenida" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -181,7 +181,7 @@
                 <Property name="text" type="java.lang.String" value="BiblioSmart"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="labelBienvenida3">
+            <Component class="javax.swing.JLabel" name="labelBienvenida">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="18" style="1"/>
@@ -236,7 +236,7 @@
                           <Component id="devolucionBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="devolucionLibro" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -245,7 +245,7 @@
             <Component class="javax.swing.JButton" name="devolucionBusqueda">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="12" style="1"/>
@@ -419,7 +419,7 @@
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="fechaDevolucion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="12" pref="33" max="32767" attributes="0"/>
+                                  <EmptySpace min="12" pref="32" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">

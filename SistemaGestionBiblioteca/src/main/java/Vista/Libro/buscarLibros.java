@@ -30,6 +30,8 @@ cargarTablaLibros();
             mostrarFilaSeleccionadaLibro();
         });
        this.activo = activo; 
+               labelBienvenida.setText("!Bienvenido, " + activo.getUsuario() + "¡"); 
+
     }
 
     /**

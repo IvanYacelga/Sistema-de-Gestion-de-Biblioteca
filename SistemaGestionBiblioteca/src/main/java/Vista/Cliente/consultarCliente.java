@@ -23,10 +23,19 @@ public class consultarCliente extends javax.swing.JFrame {
     private UsuarioAdministrador activo; 
     
     public consultarCliente(UsuarioAdministrador activo) {
-        initComponents();
-        this.conexion = ConexionPostgresql.getInstancia();
-        cargarTablaClientes();
-        this.activo = activo; 
+           initComponents();
+    this.conexion = ConexionPostgresql.getInstancia();
+    cargarTablaClientes();
+    this.activo = activo;
+
+    tablaConsultas.getSelectionModel().addListSelectionListener(evt -> {
+        if (!evt.getValueIsAdjusting()) {
+            mostrarFilaSeleccionada();
+        }
+    });
+
+    labelBienvenida.setText("¡Bienvenido, " + activo.getUsuario() + "!");
+
     }
 
     @SuppressWarnings("unchecked")
@@ -386,6 +395,27 @@ public class consultarCliente extends javax.swing.JFrame {
 
         }
     }
+    
+    private void mostrarFilaSeleccionada() {
+    int filaSeleccionada = tablaConsultas.getSelectedRow();
+    if (filaSeleccionada == -1) {
+        return;
+    }
+
+    DefaultTableModel modelo = (DefaultTableModel) tablaConsultas.getModel();
+
+    Object cedula = modelo.getValueAt(filaSeleccionada, 0);
+    Object nombre = modelo.getValueAt(filaSeleccionada, 1);
+    Object telefono = modelo.getValueAt(filaSeleccionada, 2);
+    Object correo = modelo.getValueAt(filaSeleccionada, 3);
+
+    cedulaEditar.setText(String.valueOf(cedula));
+    nombreEditar.setText(String.valueOf(nombre));
+    telefonoEditar.setText(String.valueOf(telefono));
+    correoEditar.setText(String.valueOf(correo));
+}
+    
+    
 
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
